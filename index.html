@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PadiAI</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="main.js?v=3"></script>
+</head>
+<body onload="updateText()">
+  <header style="padding-bottom: 2rem;">
+    <h1 style="margin-bottom: 0.5rem;">PadiAI</h1>
+    <p id="tagline" style="max-width: 760px; margin: 0 auto 1rem auto;">
+      Practical AI skills for work, business and school in Nigeria
+    </p>
+
+    <div class="lang-switch">
+      <label for="language">Language:</label>
+      <select id="language" onchange="setLanguage(this.value)"></select>
+    </div>
+
+    <div style="max-width: 860px; margin: 1.25rem auto 0 auto; text-align: center;">
+      <p style="margin: 0.5rem 0; font-size: 1.05rem;">
+        AI for work and income — built for Nigeria
+      </p>
+      <p style="margin: 0.25rem 0 0 0; opacity: 0.95;">
+        Low-data. Multilingual. Practical. Mobile-first.
+      </p>
+    </div>
+  </header>
+
+  <main style="padding-top: 2rem;">
+    <section style="max-width: 980px; margin: 0 auto 2rem auto;">
+      <div style="
+        background: white;
+        border-radius: 14px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        margin-bottom: 1.5rem;
+        text-align: center;
+      ">
+        <h2 style="margin-top: 0;">Choose your path</h2>
+        <p style="max-width: 700px; margin: 0 auto 1.25rem auto; color: #555;">
+          Start with the track that helps you fastest: grow a business, improve your job chances,
+          or build safe practical AI confidence.
+        </p>
+
+        <div class="tracks" style="gap: 0.85rem;">
+          <button onclick="startTrack('business')" style="min-width: 320px;">
+            AI for Business Owners
+          </button>
+          <button onclick="startTrack('students')" style="min-width: 320px;">
+            AI for Students & Job Seekers
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width: 980px; margin: 0 auto 2rem auto;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+        <div style="background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <h3 style="margin-top: 0;">For SMEs</h3>
+          <p style="margin-bottom: 0;">
+            Learn how to use AI for WhatsApp replies, marketing ideas, product descriptions,
+            proposals and everyday business productivity.
+          </p>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <h3 style="margin-top: 0;">For jobs</h3>
+          <p style="margin-bottom: 0;">
+            Use AI for CV improvement, interview practice, research support, writing clarity
+            and stronger job readiness.
+          </p>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <h3 style="margin-top: 0;">Multilingual</h3>
+          <p style="margin-bottom: 0;">
+            English, Yorùbá, Hausa, Igbo and Pidgin support so the product feels more local,
+            usable and inclusive.
+          </p>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <h3 style="margin-top: 0;">Low-data</h3>
+          <p style="margin-bottom: 0;">
+            Built as a lightweight web app so it is faster to access, easier to share, and more
+            realistic for Lagos-first rollout.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width: 980px; margin: 0 auto 2rem auto;">
+      <div style="
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      ">
+        <h2 style="margin-top: 0;">Why this can win</h2>
+        <ul style="margin-bottom: 0; color: #444; line-height: 1.6;">
+          <li>It teaches AI through practical outcomes, not abstract theory.</li>
+          <li>It fits Nigeria better: mobile-first, low-data and locally usable.</li>
+          <li>It can monetise through certificates, premium coaching and institution partnerships.</li>
+          <li>It can become attractive to schools, training centres, SME programmes and employers.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 PadiAI</p>
+  </footer>
+</body>
+</html>

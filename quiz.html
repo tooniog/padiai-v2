@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission Check • PadiAI</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="main.js?v=3"></script>
+</head>
+<body onload="loadQuiz()">
+  <header>
+    <h1>PadiAI</h1>
+    <div class="lang-switch">
+      <label for="language">Language:</label>
+      <select id="language" onchange="setLanguage(this.value)"></select>
+    </div>
+  </header>
+
+  <main>
+    <div class="quiz" style="max-width: 920px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;">
+        <div>
+          <div style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:#666; margin-bottom:0.4rem;">
+            Mission Check
+          </div>
+          <h2 id="quiz-title" style="margin-bottom:0.3rem;">Quiz</h2>
+          <p style="margin:0; color:#666;">
+            Answer these questions to prove you understand the mission.
+          </p>
+        </div>
+
+        <div style="background:#e8f5f2; color:#005b4f; padding:0.6rem 0.9rem; border-radius:999px; font-weight:600;">
+          2-question check
+        </div>
+      </div>
+
+      <div style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        gap:1rem;
+        margin:1rem 0 1.5rem 0;
+      ">
+        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
+          <h3 style="margin-top:0;">Why this matters</h3>
+          <p style="margin-bottom:0; color:#555;">
+            PadiAI is about useful understanding, not just clicking through lessons.
+          </p>
+        </div>
+
+        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
+          <h3 style="margin-top:0;">Goal</h3>
+          <p style="margin-bottom:0; color:#555;">
+            Show that you can spot helpful, safe and responsible AI usage.
+          </p>
+        </div>
+
+        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
+          <h3 style="margin-top:0;">Next step</h3>
+          <p style="margin-bottom:0; color:#555;">
+            After this, you move to the tutor and keep building confidence.
+          </p>
+        </div>
+      </div>
+
+      <div class="question" style="margin-bottom:1.4rem; background:white; border:1px solid #ececec; border-radius:12px; padding:1rem 1.1rem;">
+        <p id="q1-text" style="font-size:1.1rem; font-weight:600; margin-top:0;">Question 1</p>
+        <label style="display:block; margin:0.6rem 0;"><input type="radio" name="q1" value="0" /> <span></span></label>
+        <label style="display:block; margin:0.6rem 0;"><input type="radio" name="q1" value="1" /> <span></span></label>
+        <label style="display:block; margin:0.6rem 0;"><input type="radio" name="q1" value="2" /> <span></span></label>
+      </div>
+
+      <div class="question" style="margin-bottom:1.4rem; background:white; border:1px solid #ececec; border-radius:12px; padding:1rem 1.1rem;">
+        <p id="q2-text" style="font-size:1.1rem; font-weight:600; margin-top:0;">Question 2</p>
+        <label style="display:block; margin:0.6rem 0;"><input type="radio" name="q2" value="0" /> <span></span></label>
+        <label style="display:block; margin:0.6rem 0;"><input type="radio" name="q2" value="1" /> <span></span></label>
+        <label style="display:block; margin:0.6rem 0;"><input type="radio" name="q2" value="2" /> <span></span></label>
+      </div>
+
+      <button id="submit-button" onclick="submitQuiz()">Submit</button>
+
+      <div id="after-quiz" style="
+        display:none;
+        margin-top:1.4rem;
+        background:#f8fffd;
+        border:1px solid #d8f0ea;
+        border-radius:12px;
+        padding:1rem 1.1rem;
+      ">
+        <p id="result" style="font-size:1.05rem; font-weight:600; margin-top:0;"></p>
+        <p style="color:#555; margin-bottom:1rem;">
+          Good. Next, use the tutor to ask follow-up questions and deepen your understanding.
+        </p>
+        <button onclick="window.location.href='tutor.html?v=3'" id="tutor-button">Go to Tutor</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

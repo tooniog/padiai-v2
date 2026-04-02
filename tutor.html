@@ -1,89 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Coach • PadiAI</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="main.js?v=3"></script>
-</head>
-<body onload="initTutor()">
-  <header>
-    <h1>PadiAI</h1>
-    <div class="lang-switch">
-      <label for="language">Language:</label>
-      <select id="language" onchange="setLanguage(this.value)"></select>
-    </div>
-  </header>
+PadiAI
+Language:
+AI COACH
+Ask follow-up questions
+Use the coach to build confidence, understand AI better, and practise safe, practical use for business, jobs and study.
+Practical AI support
+Good for business
+Ask about customer replies, marketing ideas, offers, product descriptions and proposals.
+Good for jobs
+Ask about CV improvement, interview preparation, writing clarity and research help.
+Safety first
+Never share sensitive personal, school, customer or bank information with AI tools.
+Try a starter prompt
+What is AI?
+AI for my business
+AI for jobs
+Use AI safely
 
-  <main>
-    <div class="chat-container" style="max-width: 980px; height: auto; min-height: 78vh;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;">
-        <div>
-          <div style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:#666; margin-bottom:0.4rem;">
-            AI Coach
-          </div>
-          <h2 style="margin:0 0 0.35rem 0;">Ask follow-up questions</h2>
-          <p style="margin:0; color:#666; max-width:680px;">
-            Use the coach to build confidence, understand AI better, and practise safe, practical use for business, jobs and study.
-          </p>
-        </div>
-
-        <div style="background:#e8f5f2; color:#005b4f; padding:0.6rem 0.9rem; border-radius:999px; font-weight:600;">
-          Practical AI support
-        </div>
-      </div>
-
-      <div style="
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-        gap:1rem;
-        margin-bottom:1rem;
-      ">
-        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
-          <h3 style="margin-top:0;">Good for business</h3>
-          <p style="margin-bottom:0; color:#555;">
-            Ask about customer replies, marketing ideas, offers, product descriptions and proposals.
-          </p>
-        </div>
-
-        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
-          <h3 style="margin-top:0;">Good for jobs</h3>
-          <p style="margin-bottom:0; color:#555;">
-            Ask about CV improvement, interview preparation, writing clarity and research help.
-          </p>
-        </div>
-
-        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
-          <h3 style="margin-top:0;">Safety first</h3>
-          <p style="margin-bottom:0; color:#555;">
-            Never share sensitive personal, school, customer or bank information with AI tools.
-          </p>
-        </div>
-      </div>
-
-      <div style="margin-bottom:1rem;">
-        <div style="font-size:0.95rem; font-weight:600; margin-bottom:0.6rem;">Try a starter prompt</div>
-        <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
-          <button type="button" onclick="fillTutorPrompt('What is AI?')" style="padding:0.65rem 0.9rem; border:none; border-radius:999px; background:#eaf7f4; color:#005b4f; cursor:pointer;">What is AI?</button>
-          <button type="button" onclick="fillTutorPrompt('How can AI help my small business?')" style="padding:0.65rem 0.9rem; border:none; border-radius:999px; background:#eaf7f4; color:#005b4f; cursor:pointer;">AI for my business</button>
-          <button type="button" onclick="fillTutorPrompt('How can AI help me get a job?')" style="padding:0.65rem 0.9rem; border:none; border-radius:999px; background:#eaf7f4; color:#005b4f; cursor:pointer;">AI for jobs</button>
-          <button type="button" onclick="fillTutorPrompt('How do I use AI safely?')" style="padding:0.65rem 0.9rem; border:none; border-radius:999px; background:#eaf7f4; color:#005b4f; cursor:pointer;">Use AI safely</button>
-        </div>
-      </div>
-
-      <div id="messages" class="messages" style="min-height:360px;"></div>
-
-      <div class="chat-input" style="margin-top:1rem;">
-        <input
-          type="text"
-          id="chat-input"
-          placeholder="Type your question…"
-          onkeypress="if(event.key==='Enter'){sendChat();}"
-        />
-        <button onclick="sendChat()">Send</button>
-      </div>
-    </div>
-  </main>
-</body>
-</html>
+Send

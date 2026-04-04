@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PadiAI</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="main.js?v=3"></script>
+  <script defer src="main.js?v=6"></script>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#065f55" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -95,6 +95,56 @@
           <p style="margin-bottom: 0;">
             English, Yorùbá, Hausa, Igbo and Pidgin support in a lightweight web app that is easier to access and share.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width: 980px; margin: 0 auto 2rem auto;">
+      <div style="
+        background: linear-gradient(135deg, #065f55 0%, #0f9d8f 100%);
+        color: white;
+        border-radius: 16px;
+        padding: 1.6rem;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      ">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; align-items:start;">
+          <div>
+            <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.88; margin-bottom:0.45rem;">Pilot access</div>
+            <h2 style="margin:0 0 0.6rem 0;">Join the PadiAI pilot</h2>
+            <p style="margin:0 0 0.9rem 0; line-height:1.6;">
+              Get early access to PadiAI, help shape the product, and be among the first users testing practical AI for work, income and business in Nigeria.
+            </p>
+            <ul style="margin:0; padding-left:1.1rem; line-height:1.7;">
+              <li>Early user access</li>
+              <li>Direct product feedback channel</li>
+              <li>Priority for pilots, partnerships and case studies</li>
+            </ul>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.12); border-radius: 14px; padding: 1rem;">
+            <div style="display:grid; gap:0.75rem;">
+              <input id="cta-name" type="text" placeholder="Your name" style="padding:0.9rem 1rem; border:none; border-radius:10px; font-size:0.98rem;" />
+              <input id="cta-email" type="email" placeholder="Your email" style="padding:0.9rem 1rem; border:none; border-radius:10px; font-size:0.98rem;" />
+              <select id="cta-type" style="padding:0.9rem 1rem; border:none; border-radius:10px; font-size:0.98rem;">
+                <option value="Pilot user">Pilot user</option>
+                <option value="SME owner">SME owner</option>
+                <option value="Student / job seeker">Student / job seeker</option>
+                <option value="School / training partner">School / training partner</option>
+                <option value="Employer / institution">Employer / institution</option>
+              </select>
+
+              <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:0.25rem;">
+                <button onclick="submitPilotCTA()" style="background:white; color:#065f55; border:none; padding:0.9rem 1rem; border-radius:10px; font-weight:700; cursor:pointer;">
+                  Join Pilot
+                </button>
+                <button onclick="submitPartnerCTA()" style="background:transparent; color:white; border:1px solid rgba(255,255,255,0.7); padding:0.9rem 1rem; border-radius:10px; font-weight:700; cursor:pointer;">
+                  Partner With Us
+                </button>
+              </div>
+
+              <p id="cta-status" style="margin:0.4rem 0 0 0; font-size:0.93rem; opacity:0.95;"></p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

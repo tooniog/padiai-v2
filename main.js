@@ -563,3 +563,59 @@ function fillTutorPrompt(text) {
   inputEl.value = text;
   inputEl.focus();
 }
+
+function setCTAStatus(message, good = true) {
+  const statusEl = document.getElementById("cta-status");
+  if (!statusEl) return;
+  statusEl.textContent = message;
+  statusEl.style.color = good ? "white" : "#ffd7d7";
+}
+
+function readCTAFields() {
+  const name = (document.getElementById("cta-name")?.value || "").trim();
+  const email = (document.getElementById("cta-email")?.value || "").trim();
+  const type = (document.getElementById("cta-type")?.value || "").trim();
+
+  return { name, email, type };
+}
+
+function validateCTAFields(name, email) {
+  if (!name || !email) {
+    setCTAStatus("Please enter your name and email first.", false);
+    return false;
+  }
+
+  if (!email.includes("@") || !email.includes(".")) {
+    setCTAStatus("Please enter a valid email address.", false);
+    return false;
+  }
+
+  return true;
+}
+
+function saveLead(kind) {
+  const { name, email, type } = readCTAFields();
+  if (!validateCTAFields(name, email)) return;
+
+  const key = "padiai_leads";
+  const existing = JSON.parse(localStorage.getItem(key) || "[]");
+
+  existing.push({
+    kind,
+    name,
+    email,
+    type,
+    createdAt: new Date().toISOString()
+  });
+
+  localStorage.setItem(key, JSON.stringify(existing));
+  setCTAStatus(`Thanks ${name} — your ${kind.toLowerCase()} interest has been saved on this device.`);
+}
+
+function submitPilotCTA() {
+  saveLead("Pilot");
+}
+
+function submitPartnerCTA() {
+  saveLead("Partner");
+}

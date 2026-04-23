@@ -371,7 +371,7 @@ function setLanguage(lang) {
 function startTrack(track) {
   localStorage.setItem("naija_ai_track", track);
   localStorage.removeItem("naija_ai_score");
-  window.location.href = "lesson.html?v=12";
+  window.location.href = "lesson.html?v=14";
 }
 
 function updateText() {

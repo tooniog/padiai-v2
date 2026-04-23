@@ -66,12 +66,73 @@ const translations = {
     chatPlaceholder: "Type your question…",
     send: "Send",
     tutorIntro:
-      "Welcome. This is a demo AI tutor for practical AI literacy in Nigeria. In the full version, this will connect to a real AI model and give safer, richer guidance.",
-    chatWhatIsAi:
-      "AI stands for Artificial Intelligence. It refers to systems that can help with tasks like writing, summarising, organising information, spotting patterns, and supporting decisions.",
-    chatHello: "Hello. What would you like help with today?",
-    chatFallback:
-      "This is a demo tutor. In the full version, I will answer with deeper support for business, jobs, study, and responsible AI use."
+      "Welcome. This is a basic AI tutor for practical AI literacy in Nigeria. Ask about business, jobs, study, prompts, or safe AI use.",
+    chatStatusSecure:
+      "Your details will be submitted securely."
+  },
+
+  pcm: {
+    languageLabel: "Language:",
+    tagline: "Better AI skill for work, business and school for Naija",
+    selectTrack: "Choose your learning track",
+    businessTrack: "AI for Business Owners",
+    studentTrack: "AI for Students & Job Seekers",
+    lessonTitle: {
+      business: "Wetin be AI and how e fit help small business for Nigeria?",
+      students: "Wetin be AI and why e matter for students and people wey dey find work?"
+    },
+    lessonBody: {
+      business:
+        "AI be technology wey fit help person work faster and smarter. For small business for Nigeria, e fit help with WhatsApp customer reply, marketing idea, product description, simple proposal and everyday work. But no put private customer information or bank details inside AI tool.",
+      students:
+        "AI be technology wey fit help you learn faster, do research better, arrange ideas, improve your writing and prepare for school or work. For students and job seekers, e fit help with CV, interview practice and research summary. But you still need verify facts and avoid copy-copy."
+    },
+    lessonNext: "Next",
+    quizTitle: {
+      business: "Quiz: AI for Business",
+      students: "Quiz: AI for Students"
+    },
+    question1: {
+      business: "Which major benefit AI get for SMEs?",
+      students: "Wetin AI fit help pass for?"
+    },
+    q1Options: {
+      business: [
+        "E fit save time and improve productivity",
+        "E remove need for customers",
+        "E stop people from using phone"
+      ],
+      students: [
+        "To help with research, writing and productivity",
+        "To replace every teacher sharp sharp",
+        "To do nothing except browse"
+      ]
+    },
+    question2: {
+      business: "Which one be safe way to use AI for business?",
+      students: "Which one be responsible way to use AI for school or job prep?"
+    },
+    q2Options: {
+      business: [
+        "Use am for draft and ideas without sharing private data",
+        "Paste customer bank details inside every tool",
+        "Believe every answer without checking"
+      ],
+      students: [
+        "Use am improve your draft, then verify and rewrite am for your own voice",
+        "Copy everything direct submit am",
+        "No bother check if the answer na true"
+      ]
+    },
+    submitQuiz: "Submit",
+    quizResult: (score) => `You score ${score}/2. Nice one for finishing the quiz!`,
+    goTutor: "Go to Tutor",
+    chatPlaceholder: "Type your question…",
+    send: "Send",
+    tutorIntro:
+      "Welcome. This na basic AI tutor for practical AI literacy for Naija. Ask about business, jobs, study, prompts, or safe AI use.",
+    chatStatusSecure:
+      "Your details go submit securely."
   },
 
   yo: {
@@ -133,12 +194,9 @@ const translations = {
     chatPlaceholder: "Tẹ ìbéèrè rẹ…",
     send: "Firanṣẹ́",
     tutorIntro:
-      "Ẹ káàbọ̀. Èyí jẹ́ àfihàn tutor AI fún ẹ̀kọ́ AI tó wúlò ní Nàìjíríà. Ní ẹ̀dà gidi, a ó so ó mọ́ awoṣe AI gidi.",
-    chatWhatIsAi:
-      "AI túmọ̀ sí Artificial Intelligence. Ó jẹ́ àwọn eto tó lè ràn ọ́ lọ́wọ́ pẹ̀lú ìkọ̀wé, àkótán, títò alaye, mímọ́ àpẹẹrẹ àti ìrànlọ́wọ́ nínú ìpinnu.",
-    chatHello: "Pẹ̀lẹ́ o. Kí ni o fẹ́ kí n ràn ẹ́ lọ́wọ́ pẹlu lónìí?",
-    chatFallback:
-      "Èyí jẹ́ tutor àfihàn. Ní ẹ̀dà pipe, màá fún ọ ní ìrànlọ́wọ́ jinlẹ̀ síi fún iṣowo, iṣẹ́, ẹ̀kọ́ àti lílo AI ní ojúṣe."
+      "Ẹ káàbọ̀. Èyí jẹ́ basic AI tutor fún ẹ̀kọ́ AI tó wúlò ní Nàìjíríà. Béèrè nípa iṣowo, iṣẹ́, ẹ̀kọ́, prompt tàbí lílo AI ní ojúṣe.",
+    chatStatusSecure:
+      "A ó fi ìtẹ̀wọ́gbà fi data rẹ ránṣẹ́."
   },
 
   ha: {
@@ -200,12 +258,9 @@ const translations = {
     chatPlaceholder: "Rubuta tambayarka…",
     send: "Aika",
     tutorIntro:
-      "Barka da zuwa. Wannan gwajin tutor AI ne don koyon AI mai amfani a Najeriya. A cikakken sigar, za a haɗa shi da ainihin samfurin AI.",
-    chatWhatIsAi:
-      "AI na nufin Artificial Intelligence. Tsari ne da zai iya taimakawa wajen rubutu, taƙaitawa, tsara bayanai, gano alamu da taimakon yanke shawara.",
-    chatHello: "Sannu. Me kake so in taimaka maka da shi yau?",
-    chatFallback:
-      "Wannan tutor na gwaji ne. A cikakken sigar, zan ba ka taimako mai zurfi don kasuwanci, aiki, karatu da amfani da AI cikin alhaki."
+      "Barka da zuwa. Wannan basic AI tutor ne don koyon AI mai amfani a Najeriya. Yi tambaya game da kasuwanci, aiki, karatu, prompt ko amfani da AI cikin alhaki.",
+    chatStatusSecure:
+      "Za a aika bayananka cikin tsaro."
   },
 
   ig: {
@@ -267,79 +322,9 @@ const translations = {
     chatPlaceholder: "Tinye ajụjụ gị…",
     send: "Zipu",
     tutorIntro:
-      "Nnọọ. Nke a bụ tutor AI ngosi maka mmụta AI bara uru na Naịjịrịa. Na ụdị zuru oke, a ga-ejikọta ya na ezigbo ụdị AI.",
-    chatWhatIsAi:
-      "AI pụtara Artificial Intelligence. Ọ bụ usoro nwere ike inyere aka n’ide ihe, nchịkọta, ịhazi ozi, ịchọpụta usoro na inyere mkpebi aka.",
-    chatHello: "Ndeewo. Gịnị ka ịchọrọ ka m nyere gị aka taa?",
-    chatFallback:
-      "Nke a bụ tutor ngosi. Na ụdị zuru oke, aga m enye nkwado miri emi maka azụmahịa, ọrụ, ọmụmụ na iji AI n'ụzọ ziri ezi."
-  },
-
-  pcm: {
-    languageLabel: "Language:",
-    tagline: "Better AI skill for work, business and school for Naija",
-    selectTrack: "Choose your learning track",
-    businessTrack: "AI for Business Owners",
-    studentTrack: "AI for Students & Job Seekers",
-    lessonTitle: {
-      business: "Wetin be AI and how e fit help small business for Nigeria?",
-      students: "Wetin be AI and why e matter for students and people wey dey find work?"
-    },
-    lessonBody: {
-      business:
-        "AI be technology wey fit help person work faster and smarter. For small business for Nigeria, e fit help with WhatsApp customer reply, marketing idea, product description, simple proposal and everyday work. But no put private customer information or bank details inside AI tool.",
-      students:
-        "AI be technology wey fit help you learn faster, do research better, arrange ideas, improve your writing and prepare for school or work. For students and job seekers, e fit help with CV, interview practice and research summary. But you still need verify facts and avoid copy-copy.",
-    },
-    lessonNext: "Next",
-    quizTitle: {
-      business: "Quiz: AI for Business",
-      students: "Quiz: AI for Students"
-    },
-    question1: {
-      business: "Which major benefit AI get for SMEs?",
-      students: "Wetin AI fit help pass for?"
-    },
-    q1Options: {
-      business: [
-        "E fit save time and improve productivity",
-        "E remove need for customers",
-        "E stop people from using phone"
-      ],
-      students: [
-        "To help with research, writing and productivity",
-        "To replace every teacher sharp sharp",
-        "To do nothing except browse"
-      ]
-    },
-    question2: {
-      business: "Which one be safe way to use AI for business?",
-      students: "Which one be responsible way to use AI for school or job prep?"
-    },
-    q2Options: {
-      business: [
-        "Use am for draft and ideas without sharing private data",
-        "Paste customer bank details inside every tool",
-        "Believe every answer without checking"
-      ],
-      students: [
-        "Use am improve your draft, then verify and rewrite am for your own voice",
-        "Copy everything direct submit am",
-        "No bother check if the answer na true"
-      ]
-    },
-    submitQuiz: "Submit",
-    quizResult: (score) => `You score ${score}/2. Nice one for finishing the quiz!`,
-    goTutor: "Go to Tutor",
-    chatPlaceholder: "Type your question…",
-    send: "Send",
-    tutorIntro:
-      "Welcome. This one na demo AI tutor for practical AI literacy for Naija. For full version, e go connect to real AI model.",
-    chatWhatIsAi:
-      "AI mean Artificial Intelligence. Na system wey fit help with writing, summary, organising information, finding pattern and support decision making.",
-    chatHello: "How far. Wetin you want make I help you with today?",
-    chatFallback:
-      "This one na demo tutor. For full version, I go give deeper help for business, job, study and responsible AI use."
+      "Nnọọ. Nke a bụ basic AI tutor maka mmụta AI bara uru na Naịjịrịa. Jụọ maka azụmahịa, ọrụ, ọmụmụ, prompt ma ọ bụ iji AI n'ụzọ ziri ezi.",
+    chatStatusSecure:
+      "A ga-eziga nkọwa gị n’ụzọ nchekwa."
   }
 };
 
@@ -386,7 +371,7 @@ function setLanguage(lang) {
 function startTrack(track) {
   localStorage.setItem("naija_ai_track", track);
   localStorage.removeItem("naija_ai_score");
-  window.location.href = "lesson.html?v=3";
+  window.location.href = "lesson.html?v=12";
 }
 
 function updateText() {
@@ -405,6 +390,11 @@ function updateText() {
   if (buttons.length >= 2) {
     buttons[0].textContent = dict.businessTrack;
     buttons[1].textContent = dict.studentTrack;
+  }
+
+  const statusEl = document.getElementById("cta-status");
+  if (statusEl && !new URLSearchParams(window.location.search).get("submitted")) {
+    statusEl.textContent = dict.chatStatusSecure || "Your details will be submitted securely.";
   }
 }
 
@@ -500,6 +490,163 @@ function addMessage(sender, text) {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
+function fillTutorPrompt(text) {
+  const inputEl = document.getElementById("chat-input");
+  if (!inputEl) return;
+  inputEl.value = text;
+  inputEl.focus();
+}
+
+function setCTAStatus(message, good = true) {
+  const statusEl = document.getElementById("cta-status");
+  if (!statusEl) return;
+  statusEl.textContent = message;
+  statusEl.style.color = good ? "white" : "#ffd7d7";
+}
+
+function handleSubmittedState() {
+  const params = new URLSearchParams(window.location.search);
+  const submitted = params.get("submitted");
+  if (submitted !== "1") return;
+
+  const statusEl = document.getElementById("cta-status");
+  if (statusEl) {
+    statusEl.textContent = "Thanks — your pilot interest has been received. We’ll contact you soon.";
+    statusEl.style.color = "white";
+    statusEl.style.fontWeight = "700";
+  }
+
+  const banner = document.getElementById("submitted-banner");
+  if (banner) {
+    banner.style.display = "block";
+  }
+
+  const nameEl = document.getElementById("cta-name");
+  const emailEl = document.getElementById("cta-email");
+  if (nameEl) nameEl.value = "";
+  if (emailEl) emailEl.value = "";
+
+  if (window.history && window.history.replaceState) {
+    const cleanUrl = window.location.origin + window.location.pathname;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
+}
+
+const tutorBrain = {
+  en: {
+    hello:
+      "Welcome. I can help with AI basics, business replies, CV improvement, interviews, study support, prompts, and safe AI use. Ask me one real task you want help with.",
+    what_is_ai:
+      "AI is a computer tool that helps with tasks like writing, summarising, organising information, and drafting ideas. It is useful, but it can still be wrong, so important facts should be checked.",
+    business_whatsapp_reply:
+      "A strong customer reply should be short and clear: availability, price, delivery, and next step. Try: “Write a short WhatsApp reply for a customer asking about [product]. Include price, delivery area, and how to order.”",
+    price_enquiry_reply:
+      "A good price reply should mention the item, price, options, and how the customer can proceed. Keep it simple and avoid hidden surprises.",
+    customer_complaint:
+      "For complaints, follow this structure: acknowledge the issue, apologise where needed, explain the next step, and stay calm. Do not argue with the customer.",
+    product_description:
+      "A product description should explain what the product is, who it is for, and why it is useful. Focus on clear benefits, not hype.",
+    marketing_caption:
+      "A strong caption uses a hook, one benefit, and a call to action. Prompt: “Write 3 Instagram captions for [product/service]. Keep them short, catchy, and natural for a Nigerian audience.”",
+    finance_readiness:
+      "Before looking for funding, organise a one-page business summary, sales records, expense records, and a use-of-funds note. Do not invent numbers.",
+    cv_help:
+      "For CV improvement, use action verbs, clear tasks, and honest evidence. Prompt: “Rewrite these CV bullets for a [role]. Make them clear, achievement-focused, and honest.”",
+    interview_practice:
+      "For interviews, use AI as a coach. Prompt: “Act as an interviewer for a [role]. Ask me 5 realistic questions and then improve my answers using STAR.”",
+    star_method:
+      "STAR means Situation, Task, Action, Result. It helps you answer interview questions clearly using real examples.",
+    student_help:
+      "For studying, AI is best used to explain topics, create study plans, summarise notes, and generate quiz questions. Use it to learn, not to cheat.",
+    study_plan:
+      "A good study plan matches your real time and weak topics. Prompt: “Create a 7-day study plan for [subject] with [hours] per day.”",
+    summarise_notes:
+      "AI can summarise notes into key points and terms, but you should compare the summary with the original notes to make sure nothing important was lost.",
+    research_outline:
+      "For research, AI should help structure your work, not invent sources. Prompt: “Build a research outline on [topic] with headings, subheadings, and what evidence to look for.”",
+    lesson_plan:
+      "For teachers, a lesson plan should include objective, starter, activity, check for understanding, and homework. AI can draft it, but teacher judgment comes first.",
+    memo:
+      "A memo should include subject, purpose, context, requested action, and deadline. Keep it clear and professional.",
+    safety:
+      "Do not paste passwords, PINs, OTPs, BVN, NIN, private customer lists, student records, payroll files, or confidential work documents into AI tools. Use placeholders instead.",
+    hallucination:
+      "Hallucination means AI gives an answer that sounds confident but is wrong or made up. Always verify important facts, names, dates, and citations.",
+    prompting:
+      "A strong prompt includes role, task, context, format, and tone. Example: “Act as a customer-service assistant. Write a short WhatsApp reply for a Nigerian business selling [product].”",
+    unknown:
+      "I can help with AI basics, business replies, CVs, interviews, study support, prompts, and safe AI use. Try asking one clear task."
+  },
+  pcm: {
+    hello:
+      "Welcome. I fit help with AI basics, business reply, CV improvement, interview practice, study support, prompts, and safe AI use. Ask me one real task.",
+    what_is_ai:
+      "AI na computer tool wey fit help you write, summarise, arrange ideas and draft things faster. But e still fit wrong, so you need check important facts.",
+    business_whatsapp_reply:
+      "Better customer reply suppose get availability, price, delivery, and next step. Try: “Write short WhatsApp reply for customer wey ask about [product]. Add price, delivery and how to order.”",
+    price_enquiry_reply:
+      "Price reply should mention the item, amount, option, and next step. Keep am clear and simple.",
+    customer_complaint:
+      "If customer complain, acknowledge, apologise if needed, explain next step, and stay calm. No argue.",
+    product_description:
+      "Product description suppose talk wetin the product be, who e help, and why e useful.",
+    marketing_caption:
+      "Good caption get hook, one benefit, and CTA. Prompt: “Write 3 Instagram captions for [product/service]. Make am short and natural for Naija audience.”",
+    finance_readiness:
+      "Before funding, arrange business summary, sales record, expense record, and use-of-funds note. No invent numbers.",
+    cv_help:
+      "For CV, use action words, clear work, and honest evidence. Prompt: “Rewrite these CV bullets for [role]. Make am clear and honest.”",
+    interview_practice:
+      "Use AI like interview coach. Prompt: “Act as interviewer for [role]. Ask me 5 questions and improve my answers.”",
+    student_help:
+      "For school, AI fit explain topic, make study plan, summarise notes and create quiz. Use am learn, no use am cheat.",
+    safety:
+      "No paste password, PIN, OTP, BVN, NIN, customer private info, student records or confidential documents inside AI tools.",
+    prompting:
+      "Good prompt get role, task, context, format and tone.",
+    unknown:
+      "I fit help with AI basics, business replies, CV, interview, study, prompts and safe AI use."
+  }
+};
+
+function detectIntent(message) {
+  const m = message.toLowerCase();
+
+  if (m.includes("password") || m.includes("pin") || m.includes("otp") || m.includes("bvn") || m.includes("nin") || m.includes("card") || m.includes("confidential")) return "safety";
+  if (m.includes("hallucination") || m.includes("made up") || m.includes("fake source")) return "hallucination";
+  if (m.includes("prompt")) return "prompting";
+  if ((m.includes("what") && m.includes("ai")) || m.includes("wetin be ai") || m.includes("kini ai") || m.includes("menene ai")) return "what_is_ai";
+  if (m.includes("hello") || m.includes("hi") || m.includes("how far") || m.includes("sannu") || m.includes("ndewo") || m.includes("bawo")) return "hello";
+
+  if (m.includes("whatsapp") || m.includes("reply customer") || m.includes("customer reply")) return "business_whatsapp_reply";
+  if (m.includes("price") && (m.includes("reply") || m.includes("customer"))) return "price_enquiry_reply";
+  if (m.includes("complaint") || m.includes("angry customer")) return "customer_complaint";
+  if (m.includes("product description")) return "product_description";
+  if (m.includes("caption") || m.includes("marketing")) return "marketing_caption";
+  if (m.includes("funding") || m.includes("loan") || m.includes("lender") || m.includes("finance readiness")) return "finance_readiness";
+
+  if (m.includes("cv") || m.includes("resume")) return "cv_help";
+  if (m.includes("interview")) return "interview_practice";
+  if (m.includes("star")) return "star_method";
+
+  if (m.includes("study plan")) return "study_plan";
+  if (m.includes("summarise") || m.includes("summarize") || m.includes("notes")) return "summarise_notes";
+  if (m.includes("research")) return "research_outline";
+  if (m.includes("lesson plan") || m.includes("teacher")) return "lesson_plan";
+  if (m.includes("student") || m.includes("exam") || m.includes("assignment") || m.includes("school")) return "student_help";
+
+  if (m.includes("memo") || m.includes("minutes") || m.includes("meeting")) return "memo";
+
+  return "unknown";
+}
+
+function getCoachResponse(message) {
+  const lang = getLanguage();
+  const bank = tutorBrain[lang] || tutorBrain.en;
+  const intent = detectIntent(message);
+  return bank[intent] || tutorBrain.en[intent] || bank.unknown || tutorBrain.en.unknown;
+}
+
 function initTutor() {
   const dict = getDict();
 
@@ -525,28 +672,19 @@ function sendChat() {
   const text = inputEl.value.trim();
   if (!text) return;
 
-  const dict = getDict();
   addMessage("user", text);
   inputEl.value = "";
 
   setTimeout(() => {
-    const lower = text.toLowerCase();
-    let response = dict.chatFallback;
-
-    if ((lower.includes("what") && lower.includes("ai")) || lower.includes("wetin be ai") || lower.includes("menene ai") || lower.includes("kini ai")) {
-      response = dict.chatWhatIsAi;
-    } else if (lower.includes("hello") || lower.includes("hi") || lower.includes("sannu") || lower.includes("ndewo") || lower.includes("bawo")) {
-      response = dict.chatHello;
-    }
-
-    addMessage("bot", response);
-  }, 400);
+    addMessage("bot", getCoachResponse(text));
+  }, 250);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   renderLanguageSelectors();
   updateLanguageLabels();
   updateText();
+  handleSubmittedState();
 });
 
 if ("serviceWorker" in navigator) {
@@ -555,67 +693,4 @@ if ("serviceWorker" in navigator) {
       .register("service-worker.js")
       .catch((err) => console.log("Service Worker registration failed", err));
   });
-}
-
-function fillTutorPrompt(text) {
-  const inputEl = document.getElementById("chat-input");
-  if (!inputEl) return;
-  inputEl.value = text;
-  inputEl.focus();
-}
-
-function setCTAStatus(message, good = true) {
-  const statusEl = document.getElementById("cta-status");
-  if (!statusEl) return;
-  statusEl.textContent = message;
-  statusEl.style.color = good ? "white" : "#ffd7d7";
-}
-
-function readCTAFields() {
-  const name = (document.getElementById("cta-name")?.value || "").trim();
-  const email = (document.getElementById("cta-email")?.value || "").trim();
-  const type = (document.getElementById("cta-type")?.value || "").trim();
-
-  return { name, email, type };
-}
-
-function validateCTAFields(name, email) {
-  if (!name || !email) {
-    setCTAStatus("Please enter your name and email first.", false);
-    return false;
-  }
-
-  if (!email.includes("@") || !email.includes(".")) {
-    setCTAStatus("Please enter a valid email address.", false);
-    return false;
-  }
-
-  return true;
-}
-
-function saveLead(kind) {
-  const { name, email, type } = readCTAFields();
-  if (!validateCTAFields(name, email)) return;
-
-  const key = "padiai_leads";
-  const existing = JSON.parse(localStorage.getItem(key) || "[]");
-
-  existing.push({
-    kind,
-    name,
-    email,
-    type,
-    createdAt: new Date().toISOString()
-  });
-
-  localStorage.setItem(key, JSON.stringify(existing));
-  setCTAStatus(`Thanks ${name} — your ${kind.toLowerCase()} interest has been saved on this device.`);
-}
-
-function submitPilotCTA() {
-  saveLead("Pilot");
-}
-
-function submitPartnerCTA() {
-  saveLead("Partner");
 }

@@ -5,7 +5,7 @@ import vm from 'node:vm';
 
 const source = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
 const ORIGIN = 'https://padi.test';
-const CACHE = 'padiai-v17';
+const CACHE = 'padiai-v17.1';
 
 function mime(path) {
   if (path.endsWith('.html')) return 'text/html';

@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'padiai-';
-const CACHE_NAME = 'padiai-v17';
+const CACHE_NAME = 'padiai-v17.1';
 const NETWORK_TIMEOUT_MS = 4000;
 
 // Only these public files may be served from offline storage. API responses,

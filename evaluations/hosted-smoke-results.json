@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-26",
+  "syntheticInputsOnly": true,
+  "scope": "Observed signed-in browser to Vercel API to AI provider and back. This is functional evidence, not expert validation or an outcome study.",
+  "previewUrl": "https://padiai-git-codex-padi-upgrade-toonioguntayo-5941s-projects.vercel.app",
+  "protection": "Vercel Authentication verified; preview-only activation; instance-local usage backstops",
+  "initialRevision": "78397a2f01cc11a553d85729c87de5b50143dc42",
+  "correctedRevision": "de97a72a09fb5fc015c4ec8e4ea017d30d3a42fd",
+  "observations": [
+    {
+      "case": "fraction-teaching-and-practice",
+      "revision": "78397a2f01cc11a553d85729c87de5b50143dc42",
+      "completed": true,
+      "evidence": "Explained one half versus one third, offered a separately checked one half versus one quarter question, accepted one half, and recorded the practice attempt once."
+    },
+    {
+      "case": "customer-reply-with-supplied-delivery-date",
+      "initialCompleted": false,
+      "initialFailure": "A supplied tomorrow date triggered irrelevant required research and a grounding rejection.",
+      "correction": "Task-based routing distinguishes transforming supplied facts from retrieving new current facts.",
+      "correctedCompleted": true,
+      "evidence": "Produced a concise reply retaining expected delivery tomorrow without a refund or exact-time promise. Answer details disclosed that no live research or external message action occurred."
+    },
+    {
+      "case": "official-source-nimc-explanation",
+      "initialCompleted": false,
+      "initialFailure": "An introductory factual paragraph lacked a local citation; strict grounding withheld the response.",
+      "correction": "Generation requires immediate citations on factual paragraphs and named-authority claims. Separate formatting regressions preserve paragraph and markdown boundaries.",
+      "correctedCompleted": true,
+      "evidence": "Returned three factual paragraphs with inline official-source links and visible source limitations.",
+      "sources": ["https://nimc.gov.ng/", "https://nimc.gov.ng/nin"],
+      "reviewLimit": "Links were reachable, but the separate text-only source fetch exposed a JavaScript shell. Full claim entailment and expert review are not established."
+    }
+  ],
+  "technicalChecks": { "automatedPassed": 64, "mockBrowserPassed": 26 },
+  "credentialHandling": "Dedicated key saved with explicit consent as a hidden Preview-only server secret. No key or provider diagnostic trace is included here.",
+  "production": { "changed": false, "deploymentId": "dpl_4wNp9VjzN3DAPRVSTbuyQDGF7ovT" },
+  "limitations": [
+    "No nationwide readiness, learning gain, validated language quality or professional decision reliability is established.",
+    "Public AI requires durable or separately verified real edge usage protection.",
+    "Research citations and two-pass practice can still be wrong; appropriate independent review remains necessary."
+  ]
+}

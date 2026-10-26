@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { validatePayload } from '../lib/contracts.js';
 import { runAssistant, validatePractice } from '../lib/intelligence.js';
+import { summariseUsage } from './evaluation-usage.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 try { process.loadEnvFile(resolve(root, '.env.local')); } catch (e) { if (e.code !== 'ENOENT') throw e; }
@@ -41,23 +42,13 @@ for (const item of cases) {
     if (consecutiveFailures >= 2) break;
   }
 }
-const totals = records.reduce((a, r) => ({
-  inputTokens: a.inputTokens + (r.result?.meta.inputTokens || r.usage?.inputTokens || 0),
-  outputTokens: a.outputTokens + (r.result?.meta.outputTokens || r.usage?.outputTokens || 0),
-  searchCalls: a.searchCalls + (r.result?.meta.searchCalls || r.usage?.searchCalls || 0)
-}), { inputTokens: 0, outputTokens: 0, searchCalls: 0 });
-const textCost = records.reduce((sum, r) => {
-  const meta = r.result?.meta || r.usage;
-  if (!meta) return sum;
-  const rates = meta.model?.startsWith('gpt-5.6-terra') ? [2, 12] : [0.75, 4.5];
-  return sum + ((meta.inputTokens || 0) * rates[0] + (meta.outputTokens || 0) * rates[1]) / 1_000_000;
-}, 0);
+const usageSummary = summariseUsage(records);
 const report = { generatedAt: new Date().toISOString(), syntheticInputsOnly: true,
   scope: 'One bounded live run. Functional checks do not establish factual, educational or safety quality.',
   requested: cases.length, completed: records.length, functionalChecksPassed: records.filter(r => r.functionalChecksPassed).length,
-  totals, estimatedTextTokenCostUsd: textCost,
-  pricingNote: 'Text token estimate uses observed response model: GPT-5.4 mini $0.75/$4.50, GPT-5.6 Terra $2/$12 per million input/output tokens. Includes aggregated verifier usage at the generating model rate; custom verification-model routing may differ. Excludes web-search tool fees, hosting, retries and caching effects. Confirm live provider billing.',
+  ...usageSummary,
+  pricingNote: 'Text token estimate uses observed response model: GPT-5.4 mini $0.75/$4.50, GPT-5.6 Terra $2/$12 per million input/output tokens. Missing provider usage or unknown model pricing leaves the full cost null; known subtotals cover only measured records. Includes aggregated verifier usage at the generating model rate; custom verification-model routing may differ. Excludes web-search tool fees, hosting, retries and caching effects. Confirm live provider billing.',
   records };
 await mkdir(resolve(root, 'evaluations'), { recursive: true });
 await writeFile(resolve(root, caseId ? `evaluations/live-${caseId}.json` : selectedIds ? 'evaluations/live-regression-results.json' : 'evaluations/live-results.json'), JSON.stringify(report, null, 2) + '\n');
-console.log(JSON.stringify({ completed: report.completed, functionalChecksPassed: report.functionalChecksPassed, totals }));
+console.log(JSON.stringify({ completed: report.completed, functionalChecksPassed: report.functionalChecksPassed, ...usageSummary }));

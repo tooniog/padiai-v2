@@ -86,6 +86,9 @@ test('exact local tools calculate without inventing maps or dates',()=>{
   assert.match(time.answer,/12:30:00/);
   assert.match(time.answer,/UTC\+1/);
   assert.equal(time.meta.model,'local-tools');
+  assert.equal(time.meta.modelCalls,0);
+  assert.equal(time.meta.inputTokens,0);
+  assert.equal(time.meta.outputTokens,0);
   assert.match(localResponse({...question,message:'18% of 15000'},clock).answer,/2,700/);
   assert.equal(localResponse({...question,message:'What is the WAEC exam date in Lagos?'},clock),null);
   assert.equal(localResponse({...question,message:'How long will it take to drive to Ikeja?'},clock).meta.grounding,'handoff');

@@ -12,6 +12,12 @@ const independentAnswer = { valid: true, correctIndex: 1, reason: 'Subtract 2 fr
 function provider(value = answer) {
   return { ok: true, status: 200, json: async () => ({ status: 'completed', model: 'test-model', output: [{ type: 'message', content: [{ type: 'output_text', text: JSON.stringify(value) }] }], usage: { input_tokens: 120, output_tokens: 80 } }) };
 }
+function providerWithUsage(value, usage) {
+  const result=provider(value);
+  const read=result.json;
+  result.json=async()=>({...await read(),usage});
+  return result;
+}
 function request(body = base, extra = {}) {
   return { method: 'POST', headers: { host: 'localhost:3000', origin: 'http://localhost:3000', 'content-type': 'application/json' }, body, socket: { remoteAddress: '127.0.0.1' }, ...extra };
 }
@@ -96,6 +102,55 @@ test('independently accepted practice uses independent reasoning and warns of re
   assert.equal(res.body.practice.correctIndex,1);
   assert.match(res.body.practice.explanation,/Taking 2 away/);
   assert.ok(res.body.warnings.some(warning=>warning.includes('may still contain errors')));
+});
+
+test('paid calls preserve missing or partial token usage as unknown rather than zero',async()=>{
+  const noPractice={...answer,practice:null};
+  for(const [usage,expectedInput,expectedOutput] of [
+    [undefined,null,null],
+    [{input_tokens:100},100,null],
+    [{output_tokens:40},null,40],
+    [{input_tokens:0,output_tokens:0},0,0],
+    [{input_tokens:'100',output_tokens:-1},null,null],
+  ]){
+    const res=await call(request(),{fetchImpl:async()=>providerWithUsage(noPractice,usage)});
+    assert.equal(res.statusCode,200);
+    assert.equal(res.body.meta.modelCalls,1);
+    assert.equal(res.body.meta.inputTokens,expectedInput);
+    assert.equal(res.body.meta.outputTokens,expectedOutput);
+  }
+});
+
+test('two-call usage totals become unknown only for the field with an unmeasured call',async()=>{
+  for(const [first,second,expectedInput,expectedOutput] of [
+    [{input_tokens:100,output_tokens:40},{input_tokens:20,output_tokens:10},120,50],
+    [{input_tokens:100},{input_tokens:20,output_tokens:10},120,null],
+    [{input_tokens:100,output_tokens:40},{output_tokens:10},null,50],
+    [undefined,{input_tokens:20,output_tokens:10},null,null],
+  ]){
+    let calls=0;
+    const res=await call(request(),{fetchImpl:async()=>{
+      calls++;
+      return providerWithUsage(calls===1?answer:independentAnswer,calls===1?first:second);
+    }});
+    assert.equal(res.statusCode,200);
+    assert.equal(res.body.meta.modelCalls,2);
+    assert.equal(res.body.meta.inputTokens,expectedInput);
+    assert.equal(res.body.meta.outputTokens,expectedOutput);
+  }
+});
+
+test('a checker outage leaves aggregate paid usage unknown',async()=>{
+  let calls=0;
+  const res=await call(request(),{fetchImpl:async()=>{
+    calls++;
+    if(calls===1)return provider();
+    throw new Error('Unmeasured checker request');
+  }});
+  assert.equal(res.statusCode,200);
+  assert.equal(res.body.meta.modelCalls,2);
+  assert.equal(res.body.meta.inputTokens,null);
+  assert.equal(res.body.meta.outputTokens,null);
 });
 
 test('does not send provider calls for invalid methods, origins or institutional claims', async () => {

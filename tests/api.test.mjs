@@ -155,6 +155,35 @@ test('production fails closed until both enablement and distributed protection e
   assert.equal(configuration({NODE_ENV:'production',OPENAI_API_KEY:'test',PADI_AI_ENABLED:'true'}).ready,false);
 });
 
+test('owner-attested protected preview is enabled only on an actual Vercel preview',async()=>{
+  const previewEnv={NODE_ENV:'production',VERCEL:'1',VERCEL_ENV:'preview',PADI_PROTECTED_PREVIEW:'true',PADI_AI_ENABLED:'true',OPENAI_API_KEY:'placeholder'};
+  assert.deepEqual(configuration(previewEnv),{ready:true,protection:'protected-preview'});
+  let externalCalls=0;
+  assert.equal(await checkRateLimit(request(),previewEnv,async()=>{externalCalls++;throw new Error('No external limiter expected');}),'protected-preview');
+  assert.equal(externalCalls,0);
+  const res=response();
+  createStatusHandler(previewEnv)({method:'GET'},res);
+  assert.equal(res.body.ready,true);
+  assert.equal(res.body.protection,'protected-preview');
+  assert.equal(res.body.previewOnly,true);
+  assert.equal(res.body.usageLimitScope,'instance-backstop');
+  assert.equal(configuration({...previewEnv,PADI_AI_ENABLED:'false'}).ready,false);
+  assert.equal(configuration({...previewEnv,OPENAI_API_KEY:''}).ready,false);
+});
+
+test('protected-preview flag cannot bypass normal public production protection',()=>{
+  const fields={NODE_ENV:'production',VERCEL:'1',VERCEL_ENV:'preview',PADI_PROTECTED_PREVIEW:'true',PADI_AI_ENABLED:'true',OPENAI_API_KEY:'placeholder'};
+  for(const invalid of [
+    {...fields,VERCEL_ENV:'production'},
+    {...fields,VERCEL_ENV:undefined},
+    {...fields,VERCEL:undefined},
+    {...fields,VERCEL:'true'},
+    {...fields,PADI_PROTECTED_PREVIEW:undefined},
+    {...fields,PADI_PROTECTED_PREVIEW:'false'},
+  ]) assert.deepEqual(configuration(invalid),{ready:false,protection:'unconfigured'});
+  assert.equal(configuration({...fields,NODE_ENV:'development',VERCEL:undefined}).protection,'local','External development does not become a protected preview.');
+});
+
 test('urgent safeguarding works without a configured AI or external call', async () => {
   let calls=0;
   const res=await call(request({...base,message:'I want to kill myself tonight.'}),{env:{NODE_ENV:'test'},fetchImpl:async()=>{calls++;throw new Error();}});

@@ -42,11 +42,11 @@ Published business hours are not confirmed live opening status. Driving/traffic/
 
 The build publishes only 16 named frontend assets. Secrets, server source, tests, evaluations, backups and local launcher files are excluded from the public folder. The service worker does not cache API/private/cross-origin responses or turn failed asset requests into HTML. Only obsolete Padi caches are deleted.
 
-Production AI deliberately remains unavailable without explicit enablement and durable Redis limits, or separately verified real edge protection. Default durable budgets are 8 requests/minute/IP, 50/day/IP and 300/day globally. These are request limits, not currency guarantees; shared-IP behaviour needs pilot tuning.
+Production AI deliberately remains unavailable without explicit enablement and durable Redis limits, or separately verified real edge protection. An owner/team preview can be explicitly attested only on a Vercel preview after Vercel Authentication protection is independently verified. That mode uses instance-local backstops and cannot enable a production deployment. Default durable budgets are 8 requests/minute/IP, 50/day/IP and 300/day globally. These are request limits, not currency guarantees; shared-IP behaviour needs pilot tuning.
 
 ## 5. Test results and observed costs
 
-- **50 automated tests passed**, covering API validation, production fail-closed behaviour, source guards, independent practice checks, cancellation/timeouts, legacy lessons, packaging and offline cache behaviour.
+- **52 automated tests passed**, covering API validation, production fail-closed behaviour, protected-preview isolation, source guards, independent practice checks, cancellation/timeouts, legacy lessons, packaging and offline cache behaviour.
 - **24 mock browser checks passed**, covering mobile/desktop layout, all key memory/export/delete controls, practice evidence/deduplication, next-turn feedback, stop/retry, unavailable storage, safe rendering, inline citations, errors and request limits. No page errors were observed.
 - **20 initial live synthetic cases completed**. Their format/evidence checks passed, but subsequent answer review found a wrong practice key, weak transfer practice and research attribution/freshness errors. A format pass was explicitly not treated as an answer-quality pass.
 - **Nine affected regression cases completed** after practice/source improvements. A disputed question was correctly withheld; source review led to further research safeguards and model routing changes.

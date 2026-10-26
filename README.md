@@ -30,6 +30,7 @@ The bounded live evaluation command is `npm run eval:live`. It uses synthetic ca
 - `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`: durable usage protection. If absent, production remains unavailable unless a real edge limit was separately installed and verified and `PADI_EDGE_RATE_LIMITED=true` records that fact. Never set the edge flag as a workaround.
 - `PADI_REQUESTS_PER_MINUTE`, `PADI_REQUESTS_PER_DAY`, `PADI_GLOBAL_DAILY_REQUESTS`: bounded request budgets. Defaults: 8/minute/IP, 50/day/IP, 300/day globally. Redis counters expire within 48 hours. These are request ceilings, not exact currency budgets. Shared-network IP limits need pilot tuning.
 - `PADI_ALLOWED_ORIGINS`: optional explicit origins; default browser requests must match the serving host.
+- `PADI_PROTECTED_PREVIEW=true`: an operator attestation permitted only when Vercel sets `VERCEL=1` and `VERCEL_ENV=preview`. Set it only after verifying Vercel Authentication protects the deployment. It permits an authenticated owner/team preview using instance-local backstops; it is not a public or global usage guarantee. The same flag is ignored in production.
 
 Set secrets through trusted hosting settings. A local key does not automatically configure Vercel. Deployment safety checks deliberately fail closed; do not expose a paid public endpoint while its protections are missing.
 

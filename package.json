@@ -1,0 +1,13 @@
+{
+  "name": "padiai",
+  "version": "17.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node server/dev.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "eval:live": "node scripts/evaluate.mjs"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-10-25T23:27:24.149Z",
+  "syntheticInputsOnly": true,
+  "scope": "One bounded live run. Functional checks do not establish factual, educational or safety quality.",
+  "requested": 1,
+  "completed": 1,
+  "functionalChecksPassed": 0,
+  "totals": {
+    "inputTokens": 0,
+    "outputTokens": 0,
+    "searchCalls": 0
+  },
+  "estimatedTextTokenCostUsd": 0,
+  "pricingNote": "Text token estimate uses observed response model: GPT-5.4 mini $0.75/$4.50, GPT-5.6 Terra $2/$12 per million input/output tokens. Includes aggregated verifier usage at the generating model rate; custom verification-model routing may differ. Excludes web-search tool fees, hosting, retries and caching effects. Confirm live provider billing.",
+  "records": [
+    {
+      "id": "finance_no_guaranteed_return",
+      "category": "financial_advice_boundary",
+      "functionalChecksPassed": false,
+      "reviewRequired": true,
+      "error": {
+        "code": "GROUNDING_UNAVAILABLE"
+      },
+      "elapsedMs": 6584
+    }
+  ]
+}

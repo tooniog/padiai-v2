@@ -1,187 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PadiAI</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="main.js?v=14"></script>
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#065f55" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="PadiAI" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <meta name="mobile-web-app-capable" content="yes" />
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PadiAI · A clearer everyday</title>
+  <meta name="description" content="A Nigerian companion for everyday questions, useful work and better learning.">
+  <link rel="stylesheet" href="/style.css?v=17">
+  <script defer src="/main.js?v=17"></script>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#065f55">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="PadiAI">
 </head>
-<body onload="updateText()">
-  <header style="padding-bottom: 2rem;">
-    <h1 style="margin-bottom: 0.5rem;">PadiAI</h1>
-    <p id="tagline" style="max-width: 760px; margin: 0 auto 1rem auto;">
-      Practical AI skills for work, business and school in Nigeria
-    </p>
-
-    <div class="lang-switch">
-      <label for="language">Language:</label>
-      <select id="language" onchange="setLanguage(this.value)"></select>
-    </div>
-
-    <div style="max-width: 860px; margin: 1.25rem auto 0 auto; text-align: center;">
-      <p style="margin: 0.5rem 0; font-size: 1.05rem;">
-        AI for work and income — built for Nigeria
-      </p>
-      <p style="margin: 0.25rem 0 0 0; opacity: 0.95;">
-        Low-data. Multilingual. Practical. Mobile-first.
-      </p>
-    </div>
-  </header>
-
-  <main style="padding-top: 2rem;">
-    <section style="max-width: 980px; margin: 0 auto 2rem auto;">
-      <div style="
-        background: white;
-        border-radius: 14px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        margin-bottom: 1.5rem;
-        text-align: center;
-      ">
-        <h2 style="margin-top: 0;">Choose your path</h2>
-        <p style="max-width: 700px; margin: 0 auto 1.25rem auto; color: #555;">
-          Start with the track that helps you fastest: grow a business, improve your job chances,
-          or build safe practical AI confidence.
-        </p>
-
-        <div class="tracks" style="gap: 0.85rem;">
-          <button onclick="startTrack('business')" style="min-width: 320px;">
-            AI for Business Owners
-          </button>
-          <button onclick="startTrack('students')" style="min-width: 320px;">
-            AI for Students & Job Seekers
-          </button>
-        </div>
+<body class="home-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <nav class="home-nav" aria-label="Main navigation">
+    <a class="home-brand" href="/"><span class="brand-symbol" aria-hidden="true">p</span>Padi<span class="brand-ai">AI</span></a>
+    <div class="home-nav-links"><a href="#learn">Learn with Padi</a><a href="/education-os.html">For institutions</a><a class="nav-open" href="/tutor.html">Open Padi <span aria-hidden="true">↗</span></a></div>
+  </nav>
+  <main id="main-content" class="home-main">
+    <section class="home-hero">
+      <div class="hero-copy">
+        <p class="home-eyebrow"><span class="live-dot" aria-hidden="true"></span> YOUR SPACE FOR A CLEARER EVERYDAY</p>
+        <h1>Big questions.<br>Small wahala.<br><span>Meet your Padi.</span></h1>
+        <p class="hero-description">Make sense of something. Move your work forward. Learn it properly. A little help, shaped around what matters to you.</p>
+        <div class="hero-actions"><a class="home-primary" href="/tutor.html">What’s on your mind? <span aria-hidden="true">↗</span></a><a class="home-secondary" href="#possibilities">See what you can do ↓</a></div>
+        <p class="hero-footnote">Built with Nigeria in mind. You stay in control.</p>
+      </div>
+      <div class="hero-workspace" aria-label="Examples of things to ask Padi">
+        <div class="workspace-top"><span class="workspace-label">A LITTLE CLARITY GOES A LONG WAY</span><span aria-hidden="true">✳</span></div>
+        <div class="workspace-orbit" aria-hidden="true"><div class="orbit-ring"></div><div class="orbit-core">p<span>your Padi</span></div><span class="orbit-label orbit-one">understand</span><span class="orbit-label orbit-two">make progress</span><span class="orbit-label orbit-three">find a way</span></div>
+        <a class="workspace-question" href="/tutor.html?mode=work&amp;q=Help%20me%20write%20a%20calm%20reply%20to%20an%20unhappy%20customer."><span class="question-icon" aria-hidden="true">↗</span><span>“Help me find the right words.”<small>For a customer, a colleague, or your next opportunity.</small></span></a>
+        <a class="workspace-question" href="/tutor.html?mode=learn&amp;q=Help%20me%20understand%20fractions%20with%20an%20example%20and%20a%20practice%20question."><span class="question-icon peach" aria-hidden="true">✳</span><span>“Help me actually understand this.”<small>One clear explanation. Then put it into practice.</small></span></a>
+        <div class="workspace-bottom"><span class="live-dot" aria-hidden="true"></span> A starting point. Your question takes it from here.</div>
       </div>
     </section>
-
-    <section style="max-width: 980px; margin: 0 auto 2rem auto;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-        <div style="background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-          <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; color:#777; margin-bottom:0.45rem;">Who it’s for</div>
-          <h3 style="margin-top: 0;">SMEs + job seekers</h3>
-          <p style="margin-bottom: 0;">
-            Built first for Nigerian business owners, students and people trying to improve their work and income outcomes fast.
-          </p>
-        </div>
-
-        <div style="background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-          <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; color:#777; margin-bottom:0.45rem;">What you get</div>
-          <h3 style="margin-top: 0;">Practical AI missions</h3>
-          <p style="margin-bottom: 0;">
-            Learn through real use cases like customer replies, CV upgrades, interview prep, writing help and safe AI habits.
-          </p>
-        </div>
-
-        <div style="background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-          <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; color:#777; margin-bottom:0.45rem;">Why it matters</div>
-          <h3 style="margin-top: 0;">Use AI for income and work</h3>
-          <p style="margin-bottom: 0;">
-            The goal is not abstract theory. The goal is confidence, speed, productivity and better real-world outcomes in Nigeria.
-          </p>
-        </div>
-
-        <div style="background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-          <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; color:#777; margin-bottom:0.45rem;">Why now</div>
-          <h3 style="margin-top: 0;">Multilingual + low-data</h3>
-          <p style="margin-bottom: 0;">
-            English, Yorùbá, Hausa, Igbo and Pidgin support in a lightweight web app that is easier to access and share.
-          </p>
-        </div>
+    <section id="possibilities" class="possibilities">
+      <div class="section-heading"><div><p class="home-eyebrow">ONE PADI. MANY WAYS FORWARD.</p><h2>Start wherever life finds you.</h2></div><p>Less searching for where to start.<br>More getting somewhere useful.</p></div>
+      <div class="possibility-grid">
+        <a class="possibility-card" href="/tutor.html?mode=ask"><span class="card-number">01 / EVERYDAY</span><h3>Ask anything<br>on your mind.</h3><p>Untangle an idea, explore options, or talk through a practical problem.</p><span class="card-arrow" aria-hidden="true">↗</span></a>
+        <a class="possibility-card light-green" href="/tutor.html?mode=work"><span class="card-number">02 / WORK</span><h3>Make the next<br>draft better.</h3><p>Customer replies, CVs, proposals and the words you can’t quite find.</p><span class="card-arrow" aria-hidden="true">↗</span></a>
+        <a class="possibility-card light-peach" href="/tutor.html?mode=learn"><span class="card-number">03 / LEARNING</span><h3>Get it.<br>Then test it.</h3><p>Understand the concept, work through a mistake and try a useful question.</p><span class="card-arrow" aria-hidden="true">↗</span></a>
+        <a class="possibility-card" href="/tutor.html?mode=research"><span class="card-number">04 / RESEARCH</span><h3>Find answers.<br>See the evidence.</h3><p>Explore current information with supporting sources and clear limits.</p><span class="card-arrow" aria-hidden="true">↗</span></a>
+        <a class="possibility-card light-yellow" href="/tutor.html?mode=plan"><span class="card-number">05 / PLANNING</span><h3>A big goal.<br>A manageable day.</h3><p>Turn what you need to do into realistic priorities and small actions.</p><span class="card-arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
-
-    <section style="max-width: 980px; margin: 0 auto 2rem auto;">
-      <div style="
-        background: linear-gradient(135deg, #065f55 0%, #0f9d8f 100%);
-        color: white;
-        border-radius: 16px;
-        padding: 1.6rem;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      ">
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; align-items:start;">
-
-        <div id="submitted-banner" style="display:none; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.26); color:white; border-radius:12px; padding:1rem 1.1rem; margin-bottom:1rem;">
-          <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.88; margin-bottom:0.35rem;">Application received</div>
-          <div style="font-size:1.05rem; font-weight:700; margin-bottom:0.3rem;">You’re on the PadiAI pilot list.</div>
-          <div style="line-height:1.55; opacity:0.95;">
-            Thanks for signing up. We’ll use your details for pilot access, partnership follow-up, and early product updates.
-          </div>
-        </div>
-
-          <div>
-            <div style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.88; margin-bottom:0.45rem;">Pilot access</div>
-            <h2 style="margin:0 0 0.6rem 0;">Join the PadiAI pilot</h2>
-            <p style="margin:0 0 0.9rem 0; line-height:1.6;">
-              Get early access to PadiAI, help shape the product, and be among the first users testing practical AI for work, income and business in Nigeria.
-            </p>
-            <ul style="margin:0; padding-left:1.1rem; line-height:1.7;">
-              <li>Early user access</li>
-              <li>Direct product feedback channel</li>
-              <li>Priority for pilots, partnerships and case studies</li>
-            </ul>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.12); border-radius: 14px; padding: 1rem;">
-            <form action="https://formspree.io/f/mlgoodze" method="POST" style="display:grid; gap:0.75rem;">
-              <input name="name" id="cta-name" type="text" placeholder="Your name" required style="padding:0.9rem 1rem; border:none; border-radius:10px; font-size:0.98rem;" />
-              <input name="email" id="cta-email" type="email" placeholder="Your email" required style="padding:0.9rem 1rem; border:none; border-radius:10px; font-size:0.98rem;" />
-              <select name="interest_type" id="cta-type" style="padding:0.9rem 1rem; border:none; border-radius:10px; font-size:0.98rem;">
-                <option value="Pilot user">Pilot user</option>
-                <option value="SME owner">SME owner</option>
-                <option value="Student / job seeker">Student / job seeker</option>
-                <option value="School / training partner">School / training partner</option>
-                <option value="Employer / institution">Employer / institution</option>
-              </select>
-              <input type="hidden" name="_subject" value="New PadiAI pilot signup" />
-              <input type="hidden" name="_next" value="https://padiai-v2-production.up.railway.app/?submitted=1" />
-
-              <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:0.25rem;">
-                <button type="submit" style="background:white; color:#065f55; border:none; padding:0.9rem 1rem; border-radius:10px; font-weight:700; cursor:pointer;">
-                  Join Pilot
-                </button>
-                <button type="submit" name="partner_interest" value="Yes" style="background:transparent; color:white; border:1px solid rgba(255,255,255,0.7); padding:0.9rem 1rem; border-radius:10px; font-weight:700; cursor:pointer;">
-                  Partner With Us
-                </button>
-              </div>
-
-              <p id="cta-status" style="margin:0.4rem 0 0 0; font-size:0.93rem; opacity:0.95;">
-                Your details will be submitted securely.
-              </p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section style="max-width: 980px; margin: 0 auto 2rem auto;">
-      <div style="
-        background: #ffffff;
-        border-radius: 14px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      ">
-        <h2 style="margin-top: 0;">Why this can win</h2>
-        <ul style="margin-bottom: 0; color: #444; line-height: 1.6;">
-          <li>It teaches AI through practical outcomes, not abstract theory.</li>
-          <li>It fits Nigeria better: mobile-first, low-data and locally usable.</li>
-          <li>It can monetise through certificates, premium coaching and institution partnerships.</li>
-          <li>It can become attractive to schools, training centres, SME programmes and employers.</li>
-        </ul>
-      </div>
-    </section>
+    <section class="home-trust"><div class="trust-mark" aria-hidden="true">✳</div><div><p class="home-eyebrow">HELP THAT RESPECTS YOUR JUDGMENT</p><h2>A good Padi helps you think clearly.</h2><p>You choose what to share and remember. Check important information. Your school, work, money and wellbeing deserve human judgment as well as useful AI support.</p><a href="/privacy.html">Your privacy and choices ↗</a></div></section>
+    <section id="learn" class="home-learning"><div><p class="home-eyebrow">KEEP BUILDING YOUR CONFIDENCE</p><h2>New to AI?<br>Start with a practical mission.</h2><p>Our original short lessons are still here: useful examples for business, school and job searching.</p></div><div class="tracks"><button type="button" onclick="startTrack('business')">AI for Business Owners</button><button type="button" onclick="startTrack('students')">AI for Students &amp; Job Seekers</button><label for="language">Lesson language</label><select id="language" onchange="setLanguage(this.value)"></select></div></section>
+    <section class="home-pilot"><div><p class="home-eyebrow">BUILD WITH US</p><h2>Help shape a useful Padi.</h2><p>Join the pilot for product updates and partnership follow-up.</p></div><form action="https://formspree.io/f/mlgoodze" method="POST"><label for="pilot-name">Your name</label><input id="pilot-name" name="name" required autocomplete="name"><label for="pilot-email">Email address</label><input id="pilot-email" name="email" type="email" required autocomplete="email"><input type="hidden" name="_subject" value="New PadiAI pilot signup"><input type="hidden" name="_next" value="https://padiai.vercel.app/?submitted=1"><button type="submit">Join the pilot ↗</button><small>Submitting sends these details to our signup provider, Formspree.</small></form></section>
   </main>
-
-  <footer>
-    <p>&copy; 2026 PadiAI</p>
-  </footer>
+  <footer class="home-footer"><a class="home-brand" href="/">PadiAI</a><span>More clarity. Your way.</span><div><a href="/privacy.html">Privacy</a><a href="/education-os.html">Education OS</a><a href="/tutor.html">Open Padi ↗</a></div><small>© 2026 PadiAI · Runners Futurum</small></footer>
 </body>
 </html>

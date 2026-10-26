@@ -1,0 +1,18 @@
+{
+  "suite": "ui-resilience",
+  "mockOnly": true,
+  "passed": [
+    "private provider error is hidden behind a useful message",
+    "retry resends original request once and preserves a new draft",
+    "HTML in an answer is rendered as inert text",
+    "searched numeric citation maps to its actual source; missing citation and hostile HTML stay inert",
+    "cancel restores the composer",
+    "history and multibyte request size are bounded; shortened replies are labelled",
+    "new conversation clears the transcript",
+    "known grounding error explains the verification problem without provider details",
+    "oversize notes are rejected before a request or partial transcript",
+    "unavailable browser storage remains usable without false saving claims",
+    "blocked browser-data deletion is explicitly disclosed"
+  ],
+  "pageErrors": []
+}

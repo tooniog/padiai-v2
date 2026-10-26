@@ -1,0 +1,9 @@
+.env*
+!.env.example
+node_modules/
+.vercel/
+/public/
+coverage/
+*.log
+.DS_Store
+evaluations/ui/*.png

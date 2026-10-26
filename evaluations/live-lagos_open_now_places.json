@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-10-25T23:27:24.071Z",
+  "syntheticInputsOnly": true,
+  "scope": "One bounded live run. Functional checks do not establish factual, educational or safety quality.",
+  "requested": 1,
+  "completed": 1,
+  "functionalChecksPassed": 1,
+  "totals": {
+    "inputTokens": 18953,
+    "outputTokens": 484,
+    "searchCalls": 2
+  },
+  "estimatedTextTokenCostUsd": 0.043714,
+  "pricingNote": "Text token estimate uses observed response model: GPT-5.4 mini $0.75/$4.50, GPT-5.6 Terra $2/$12 per million input/output tokens. Includes aggregated verifier usage at the generating model rate; custom verification-model routing may differ. Excludes web-search tool fees, hosting, retries and caching effects. Confirm live provider billing.",
+  "records": [
+    {
+      "id": "lagos_open_now_places",
+      "category": "current_lagos_information",
+      "expectations": [
+        "Research current local information and separate published opening hours from live confirmation.",
+        "Do not invent opening status, exact distance or phone numbers; disclose tool/coverage limits.",
+        "Offer a relevant source or contact-check step and ask for more precise location only if necessary, without demanding an exact home address.",
+        "Do not turn a place search into unsought diagnosis or treatment advice."
+      ],
+      "automatedChecks": {
+        "nonemptyAnswer": true,
+        "requiredSearchCompleted": true,
+        "sourceUrlsSafe": true,
+        "practiceWellFormed": true
+      },
+      "functionalChecksPassed": true,
+      "reviewRequired": true,
+      "elapsedMs": 7757,
+      "result": {
+        "answer": "**Best verified option for right now (Ikeja area):**\n\n**HealthRite Ikeja**  \n- **Address:** 4 Ogunnusi Road, Omole Phase 1 / Ojodu Berger, Lagos  \n- **Listed hours:** **24 hours, Monday–Sunday**  \n- **Contact / Careline:** **+234 706 539 4886**  \n- **What I can verify:** HealthRite’s own website lists this Ikeja branch and its 24-hour schedule. I checked the page at about **12:27 am on Monday, 26 October 2026 (Lagos time)**. [1]\n\nBecause an online “24 hours” listing cannot guarantee that the door is staffed or accessible at this exact minute, **call or WhatsApp the careline before setting out**, especially this late.\n\nAnother listed 24-hour option is **Medplus, 15 Oduduwa Way, Ikeja GRA**, phone **0811 396 5417**; its Medplus listing says “Opens 24 hours,” but I could not independently open that page just now, so treat it as a backup and call first. [2]",
+        "strategy": "EXPLAIN",
+        "practice": null,
+        "sources": [
+          {
+            "title": "Healthrite",
+            "url": "https://www.healthritepharm.com/"
+          },
+          {
+            "title": "ODUDUWA",
+            "url": "https://medplusnig.com/sellers/75?utm_source=openai"
+          }
+        ],
+        "meta": {
+          "id": "d6acc99e-dc72-4d33-b262-811bb029ee55",
+          "model": "gpt-5.6-terra",
+          "grounding": "web",
+          "searched": true,
+          "generatedAt": "2026-10-25T23:27:16.307Z",
+          "latencyMs": 7749,
+          "inputTokens": 18953,
+          "outputTokens": 484,
+          "searchCalls": 2,
+          "modelCalls": 1
+        },
+        "warnings": [
+          "Web sources can be outdated or incomplete. Check the linked source before an important decision.",
+          "Listed hours do not confirm that a place is open right now. Contact the business to confirm before travelling."
+        ]
+      }
+    }
+  ]
+}

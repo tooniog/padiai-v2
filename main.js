@@ -328,12 +328,22 @@ const translations = {
   }
 };
 
+const temporaryPreferences = {};
+function getPreference(key) {
+  try { return localStorage.getItem(key) || temporaryPreferences[key]; }
+  catch { return temporaryPreferences[key]; }
+}
+function setPreference(key, value) {
+  temporaryPreferences[key] = value;
+  try { localStorage.setItem(key, value); } catch { /* Lessons also work without browser storage. */ }
+}
 function getLanguage() {
-  return localStorage.getItem("naija_ai_lang") || "en";
+  const language = getPreference("naija_ai_lang");
+  return languageOptions.some(option => option.code === language) ? language : "en";
 }
 
 function getTrack() {
-  return localStorage.getItem("naija_ai_track") || "business";
+  return getPreference("naija_ai_track") === "students" ? "students" : "business";
 }
 
 function getDict() {
@@ -364,14 +374,16 @@ function updateLanguageLabels() {
 }
 
 function setLanguage(lang) {
-  localStorage.setItem("naija_ai_lang", lang);
+  if (!languageOptions.some(option => option.code === lang)) return;
+  setPreference("naija_ai_lang", lang);
   window.location.reload();
 }
 
 function startTrack(track) {
-  localStorage.setItem("naija_ai_track", track);
-  localStorage.removeItem("naija_ai_score");
-  window.location.href = "lesson.html?v=14";
+  if (!["business", "students"].includes(track)) return;
+  setPreference("naija_ai_track", track);
+  try { localStorage.removeItem("naija_ai_score"); } catch { /* Optional storage. */ }
+  window.location.href = "lesson.html?v=17";
 }
 
 function updateText() {
@@ -464,13 +476,29 @@ function submitQuiz() {
   const q1Answer = document.querySelector('input[name="q1"]:checked');
   const q2Answer = document.querySelector('input[name="q2"]:checked');
 
+  let validation = document.getElementById("quiz-validation");
+  if (!validation) {
+    validation = document.createElement("p");
+    validation.id = "quiz-validation";
+    validation.setAttribute("role", "status");
+    document.getElementById("submit-button")?.before(validation);
+  }
+  if (!q1Answer || !q2Answer) {
+    validation.textContent = getLanguage() === "pcm" ? "Answer both questions first, then check your answers." : "Answer both questions before checking your result.";
+    document.querySelector(`input[name="${q1Answer ? "q2" : "q1"}"]`)?.focus();
+    return;
+  }
+  validation.textContent = "";
+
   if (q1Answer && parseInt(q1Answer.value, 10) === correct[track][0]) score += 1;
   if (q2Answer && parseInt(q2Answer.value, 10) === correct[track][1]) score += 1;
 
-  localStorage.setItem("naija_ai_score", String(score));
+  try { sessionStorage.setItem("naija_ai_score", String(score)); } catch { /* Optional session score. */ }
 
   const resultEl = document.getElementById("result");
-  if (resultEl) resultEl.textContent = dict.quizResult(score);
+  if (resultEl) resultEl.textContent = dict.quizResult(score) + " " + (score === 2
+    ? "You identified useful and responsible AI use. Try explaining one example in your own words."
+    : "Review: AI supports people's work and learning. Protect private information, verify important facts, and keep your own judgment.");
 
   const afterQuiz = document.getElementById("after-quiz");
   if (afterQuiz) afterQuiz.style.display = "block";

@@ -1,0 +1,26 @@
+{
+  "suite": "ui-flows",
+  "mockOnly": true,
+  "passed": [
+    "landing 1440px: no horizontal overflow",
+    "landing 375px: no horizontal overflow",
+    "assistant 1440px: no horizontal overflow",
+    "assistant 375px: no horizontal overflow",
+    "mode and draft URL parameters do not auto-submit",
+    "unsafe source protocol filtered",
+    "actual practice attempt visible, sent to tutor and counted once",
+    "memory off: no transcript persistence",
+    "opt-in persistence, profile editing and resumed conversation",
+    "data export produces a download",
+    "delete clears assistant and legacy library local/session data",
+    "corrupt saved memory recovers cleanly",
+    "unavailable service is clearly disclosed and sending disabled"
+  ],
+  "screenshots": [
+    "evaluations/ui/landing-desktop.png",
+    "evaluations/ui/landing-mobile.png",
+    "evaluations/ui/assistant-desktop.png",
+    "evaluations/ui/assistant-mobile.png"
+  ],
+  "pageErrors": []
+}

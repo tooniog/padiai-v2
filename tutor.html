@@ -1,96 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Coach • PadiAI</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="main.js?v=14"></script>
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#065f55" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="PadiAI" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <meta name="mobile-web-app-capable" content="yes" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your everyday thinking space · PadiAI</title>
+  <meta name="description" content="Ask, learn, work and plan with Padi. Practical support for everyday life in Nigeria.">
+  <meta name="theme-color" content="#123c33">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="PadiAI">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="assistant.css">
+  <script defer src="assistant.js"></script>
 </head>
-<body onload="initTutor()">
-  <header>
-    <h1>PadiAI</h1>
-    <div class="lang-switch">
-      <label for="language">Language:</label>
-      <select id="language" onchange="setLanguage(this.value)"></select>
-    </div>
-  </header>
-
-  <main>
-    <div class="chat-container" style="max-width: 980px; height: auto; min-height: 78vh;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;">
-        <div>
-          <div style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:#666; margin-bottom:0.4rem;">
-            AI Coach
-          </div>
-          <h2 style="margin:0 0 0.35rem 0;">Ask follow-up questions</h2>
-          <p style="margin:0; color:#666; max-width:680px;">
-            Use the coach to build confidence, understand AI better, and practise safe, practical use for business, jobs and study.
-          </p>
-        </div>
-
-        <div style="background:#e8f5f2; color:#005b4f; padding:0.6rem 0.9rem; border-radius:999px; font-weight:600;">
-          Practical AI support
-        </div>
+<body>
+  <a class="skip-link" href="#message">Skip to your question</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Padi navigation">
+      <a class="brand" href="index.html" aria-label="PadiAI home"><span class="brand-symbol" aria-hidden="true">p</span><span>padi<span class="brand-ai">ai</span></span></a>
+      <div class="sidebar-caption">A little clarity.<br>A better next step.</div>
+      <button class="nav-item active" id="new-task" type="button"><span aria-hidden="true">＋</span> New conversation</button>
+      <button class="nav-item" id="show-progress" type="button"><span aria-hidden="true">↗</span> My learning</button>
+      <a class="nav-item" href="index.html"><span aria-hidden="true">▤</span> AI skills library</a>
+      <div class="sidebar-note"><span class="small-dot" aria-hidden="true"></span> Made for everyday life<p>From a tricky topic to a busy workday. Start where you are.</p></div>
+      <div class="sidebar-bottom"><a href="education-os.html">Padi in your institution <span aria-hidden="true">↗</span></a><a href="privacy.html">Privacy &amp; your choices</a><span>Runners Futurum</span></div>
+    </aside>
+    <main class="main-space">
+      <header class="topbar"><span class="topbar-label">YOUR EVERYDAY THINKING SPACE</span><button id="open-profile" class="profile-button" type="button" aria-haspopup="dialog"><span class="profile-dot" aria-hidden="true">◎</span> Your preferences</button></header>
+      <div class="workspace">
+        <section class="intro" id="intro" aria-labelledby="welcome-title"><div class="eyebrow"><span aria-hidden="true">✳</span> Small question. Big possibility.</div><h1 id="welcome-title">What’s on your mind?</h1><p>Make sense of something. Learn a little.<br>Move your day forward.</p></section>
+        <nav class="mode-tabs" aria-label="Choose how Padi helps"><button type="button" data-mode="ask" aria-pressed="true">Ask</button><button type="button" data-mode="learn" aria-pressed="false">Learn</button><button type="button" data-mode="work" aria-pressed="false">Work</button><button type="button" data-mode="plan" aria-pressed="false">Plan</button><button type="button" data-mode="research" aria-pressed="false">Research</button></nav>
+        <p class="mode-description" id="mode-description">A clear answer, with a practical next step.</p>
+        <section class="starter-grid" id="starters" aria-label="Ideas to get started"></section>
+        <div class="resume-banner" id="resume-banner" hidden><span>Welcome back. Your last conversation is here.</span><button type="button" id="dismiss-resume" aria-label="Dismiss welcome back message">×</button></div>
+        <section id="messages" class="conversation" aria-label="Your conversation" aria-live="polite" aria-relevant="additions"></section>
+        <div class="request-status" id="request-status" role="status" aria-live="polite"></div>
+        <div class="error-box" id="error-box" hidden><p id="error-text"></p><button type="button" id="retry">Try again</button></div>
+        <form class="composer" id="composer">
+          <label class="sr-only" for="message">Your question or task</label>
+          <textarea id="message" name="message" rows="2" maxlength="4000" placeholder="Ask anything. We’ll take it from here." required></textarea>
+          <details class="notes-panel"><summary>Add your notes <span>optional</span></summary><label for="notes">Paste the text you want Padi to use</label><textarea id="notes" rows="4" maxlength="12000" placeholder="Class notes, a draft, or background for your question…"></textarea><p>Text only. Notes are sent with your question and are not saved in browser memory. Leave out passwords, bank details and private information about other people.</p></details>
+          <div class="composer-bottom"><span class="composer-hint" id="composer-hint">Ask freely. Keep personal details private.</span><div><button id="cancel" class="cancel-button" type="button" hidden>Stop</button><button id="send" class="send-button" type="submit"><span>Ask Padi</span><span aria-hidden="true">↗</span></button></div></div>
+        </form>
+        <p class="trust-note">Padi can make mistakes. Check important information. <a href="privacy.html">You stay in control.</a></p>
       </div>
-
-      <div style="
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-        gap:1rem;
-        margin-bottom:1rem;
-      ">
-        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
-          <h3 style="margin-top:0;">Good for business</h3>
-          <p style="margin-bottom:0; color:#555;">
-            Ask about customer replies, marketing ideas, offers, product descriptions and proposals.
-          </p>
-        </div>
-
-        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
-          <h3 style="margin-top:0;">Good for jobs</h3>
-          <p style="margin-bottom:0; color:#555;">
-            Ask about CV improvement, interview preparation, writing clarity and research help.
-          </p>
-        </div>
-
-        <div style="background:#fafafa; border:1px solid #e7e7e7; border-radius:12px; padding:1rem;">
-          <h3 style="margin-top:0;">Safety first</h3>
-          <p style="margin-bottom:0; color:#555;">
-            Never share sensitive personal, school, customer or bank information with AI tools.
-          </p>
-        </div>
-      </div>
-
-      <div style="margin-bottom:1rem;">
-        <div style="font-size:0.95rem; font-weight:600; margin-bottom:0.6rem;">Try a starter prompt</div>
-        <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
-          <button type="button" onclick="fillTutorPrompt('What is AI?')" style="padding:0.65rem 0.9rem; border:none; border-radius:999px; background:#eaf7f4; color:#005b4f; cursor:pointer;">What is AI?</button>
-          <button type="button" onclick="fillTutorPrompt('How can AI help my small business?')" style="padding:0.65rem 0.9rem; border:none; border-radius:999px; background:#eaf7f4; color:#005b4f; cursor:pointer;">AI for my business</button>
-          <button type="button" onclick="fillTutorPrompt('How can AI help me get a job?')" style="padding:0.65rem 0.9rem; border:none; border-radius:999px; background:#eaf7f4; color:#005b4f; cursor:pointer;">AI for jobs</button>
-          <button type="button" onclick="fillTutorPrompt('How do I use AI safely?')" style="padding:0.65rem 0.9rem; border:none; border-radius:999px; background:#eaf7f4; color:#005b4f; cursor:pointer;">Use AI safely</button>
-        </div>
-      </div>
-
-      <div id="messages" class="messages" style="min-height:360px;"></div>
-
-      <div class="chat-input" style="margin-top:1rem;">
-        <input
-          type="text"
-          id="chat-input"
-          placeholder="Type your question…"
-          onkeypress="if(event.key==='Enter'){sendChat();}"
-        />
-        <button onclick="sendChat()">Send</button>
-      </div>
-    </div>
-  </main>
+    </main>
+  </div>
+  <dialog id="profile-dialog" aria-labelledby="preferences-title"><div class="dialog-header"><div><div class="eyebrow">MAKE IT YOURS</div><h2 id="preferences-title">A little context helps.</h2></div><button class="close-dialog" type="button" aria-label="Close preferences">×</button></div><p class="muted">Optional. Use broad details rather than private information. You can start asking without filling this in.</p>
+    <form id="profile-form" class="profile-form">
+      <div class="field-grid"><div><label for="level">Your learning level</label><select id="level"><option value="adult">Adult / everyday learning</option><option value="primary">Primary school</option><option value="secondary">Secondary school</option><option value="university">University / college</option></select></div><div><label for="language">Reply language</label><select id="language"><option value="en">English</option><option value="pcm">Nigerian Pidgin · preview</option><option value="yo">Yorùbá · preview</option><option value="ha">Hausa · preview</option><option value="ig">Igbo · preview</option></select></div><div><label for="subject">Subject or work area</label><input id="subject" maxlength="100" placeholder="e.g. Biology or retail"></div><div><label for="area">Broad location</label><input id="area" maxlength="100" placeholder="e.g. Yaba, Lagos"></div></div>
+      <label for="goal">What are you working towards?</label><input id="goal" maxlength="200" placeholder="e.g. Prepare for WAEC or improve my customer replies">
+      <label for="style">How should Padi explain?</label><select id="style"><option value="simple">Keep it simple</option><option value="steps">Walk me through the steps</option><option value="deep">Go a little deeper</option></select>
+      <div class="memory-choice"><label class="checkbox-label" for="remember"><input type="checkbox" id="remember"><span>Remember on this browser</span></label><p>Off by default. When on, Padi saves these preferences, your current conversation and practice results on this device. Anyone using this browser may see them. Your pasted notes are not saved.</p></div>
+      <p class="muted small">Language quality varies; preview languages may contain mistakes. This is a personal experience. No school connection or human monitoring is active here.</p>
+      <button class="primary-button" type="submit">Save preferences</button>
+    </form>
+    <div class="data-controls"><button id="export-data" type="button">Export my data</button><button id="clear-data" type="button">Delete my data</button></div><p id="data-status" class="small muted" role="status" aria-live="polite"></p>
+  </dialog>
+  <dialog id="progress-dialog" aria-labelledby="progress-title"><div class="dialog-header"><div><div class="eyebrow">REAL PRACTICE, REAL SIGNALS</div><h2 id="progress-title">Your learning so far.</h2></div><button class="close-dialog" type="button" aria-label="Close learning progress">×</button></div><p class="muted">These are your answers to Padi practice questions. They are useful signals, not a grade or a mastery score.</p><div class="progress-stats"><div><strong id="attempt-count">0</strong><span>questions attempted</span></div><div><strong id="correct-count">0</strong><span>answered correctly</span></div></div><div id="progress-topics"></div><p class="muted small" id="progress-storage-note">Results stay in this session unless you choose browser memory.</p><button type="button" id="practice-start" class="primary-button">Practise something new</button></dialog>
 </body>
 </html>

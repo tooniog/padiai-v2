@@ -165,6 +165,31 @@ try {
   await page.waitForFunction(() => document.querySelector('#request-status').textContent.includes('temporarily unavailable'));
   assert.equal(await page.locator('#send').isDisabled(), true);
   record('unavailable service is clearly disclosed and sending disabled');
+  await page.route('**/api/status', route => route.fulfill({ json: { ready: false, researchAvailable: false, aiPaused: true, freeToolsAvailable: true } }));
+  await page.reload();
+  await page.waitForFunction(() => !document.querySelector('#service-notice').hidden);
+  assert.equal(await page.locator('#send').isDisabled(), false);
+  assert.equal(await page.locator('[data-mode=research]').isDisabled(), true);
+  assert.equal(await page.locator('[data-mode=learn]').isDisabled(), true);
+  assert.match(await page.locator('#starters').innerText(), /Lagos time/);
+  record('paid pause is disclosed while free tools remain usable and paid modes are disabled');
+  await page.route('**/api/chat', route => {
+    const body = route.request().postDataJSON();
+    return body.message === '15% of 20000'
+      ? route.fulfill({ json: { answer: '15% of 20000 = 3,000.', practice: null, sources: [], warnings: [], meta: { model: 'local-tools', grounding: 'calculated', searched: false } } })
+      : route.fulfill({ status: 503, json: { error: { code: 'AI_PAUSED', message: 'Paid AI is paused.' } } });
+  });
+  await page.locator('#message').fill('15% of 20000'); await page.locator('#send').click();
+  await page.waitForFunction(() => document.querySelector('.chat-message.assistant')?.textContent.includes('3,000'));
+  assert.equal(await page.locator('#service-notice').isVisible(), true);
+  record('a free calculation completes while the paid-pause notice stays visible');
+  await page.locator('#message').fill('Draft a customer reply.'); await page.locator('#send').click();
+  await page.waitForFunction(() => !document.querySelector('#error-box').hidden);
+  assert.match(await page.locator('#error-text').innerText(), /AI replies and online research are paused/);
+  assert.equal(await page.locator('#retry').isVisible(), false);
+  await page.screenshot({ path: resolve(output, 'paid-paused-mobile.png'), fullPage: true });
+  screenshots.push('evaluations/ui/paid-paused-mobile.png');
+  record('unsupported paid tasks explain the pause without encouraging a paid retry');
   assert.deepEqual(unexpectedAPI, [], 'an API request escaped the mock routes');
   assert.deepEqual(errors, []);
   const result = { suite: 'ui-flows', mockOnly: true, passed, screenshots, pageErrors: errors };

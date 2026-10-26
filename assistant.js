@@ -45,7 +45,8 @@
   let controller = null;
   let requestNumber = 0;
   let lastRequest = null;
-  let service = { ready: false, researchAvailable: false };
+  let service = { ready: false, researchAvailable: false, aiPaused: false, freeToolsAvailable: false };
+  const canSend = () => service.ready || service.freeToolsAvailable;
 
   const text = (tag, content, className) => {
     const node = document.createElement(tag);
@@ -120,11 +121,17 @@
     $('remember').checked = state.remember;
   }
   function setMode(mode, persist = true) {
+    if (service.aiPaused) mode = 'ask';
     state.mode = mode;
     document.querySelectorAll('[data-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
-    $('mode-description').textContent = descriptions[mode] + (mode === 'research' && !service.researchAvailable ? ' Online search is not currently available; Padi will say when it cannot verify something.' : '');
+    $('mode-description').textContent = service.aiPaused ? 'Free tools: Lagos time and date, or a percentage calculation.' : descriptions[mode] + (mode === 'research' && !service.researchAvailable ? ' Online search is not currently available; Padi will say when it cannot verify something.' : '');
     $('starters').replaceChildren();
-    for (const [icon, title, detail, prompt] of starters[mode]) {
+    const choices = service.aiPaused ? [
+      ['◷', 'Lagos time', 'The current time in Lagos.', 'What time is it in Lagos?'],
+      ['▤', 'Today’s date', 'The date in Nigeria.', 'What is the date in Nigeria?'],
+      ['%', 'Work out a percentage', 'Change the numbers to suit you.', '15% of 20000']
+    ] : starters[mode];
+    for (const [icon, title, detail, prompt] of choices) {
       const button = text('button', undefined, 'starter-card'); button.type = 'button';
       const symbol = text('span', icon, 'card-icon'); symbol.setAttribute('aria-hidden', 'true');
       const arrow = text('span', '↗', 'card-arrow'); arrow.setAttribute('aria-hidden', 'true');
@@ -224,14 +231,14 @@
   }
   function updateBusy(value) {
     busy = value;
-    $('send').disabled = value || !service.ready;
+    $('send').disabled = value || !canSend();
     $('cancel').hidden = !value;
     $('message').readOnly = value;
     $('notes').readOnly = value;
     $('messages').setAttribute('aria-busy', String(value));
-    document.querySelectorAll('[data-mode]').forEach(button => { button.disabled = value; });
+    document.querySelectorAll('[data-mode]').forEach(button => { button.disabled = value || (service.aiPaused && button.dataset.mode !== 'ask'); });
   }
-  function showError(message) { $('error-text').textContent = message; $('error-box').hidden = false; $('retry').hidden = !lastRequest || !service.ready; }
+  function showError(message) { $('error-text').textContent = message; $('error-box').hidden = false; $('retry').hidden = !lastRequest || !canSend() || service.aiPaused; }
   function requestBody(message) {
     if (message.length > 4000) throw new Error('Please shorten your question to 4,000 characters or fewer. Your draft is still here.');
     const history = state.messages.slice(-10).map(item => {
@@ -248,7 +255,7 @@
     return body;
   }
   async function send(retry = false) {
-    if (busy || !service.ready) return;
+    if (busy || !canSend()) return;
     let body;
     if (retry && lastRequest) body = lastRequest;
     else {
@@ -265,12 +272,13 @@
     let timedOut = false;
     const timer = setTimeout(() => { timedOut = true; activeController.abort(); }, 90000);
     updateBusy(true);
-    $('request-status').textContent = body.mode === 'research' && service.researchAvailable ? 'Padi is looking into your question…' : 'Padi is thinking it through…';
+    $('request-status').textContent = service.aiPaused ? 'Working that out…' : body.mode === 'research' && service.researchAvailable ? 'Padi is looking into your question…' : 'Padi is thinking it through…';
     try {
       const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: activeController.signal, credentials: 'same-origin' });
       let data; try { data = await response.json(); } catch { throw new Error('Padi could not read the reply. Please try again.'); }
       if (!response.ok) {
         const safeErrors = {
+          AI_PAUSED: 'AI replies and online research are paused. Try Lagos time/date, a percentage calculation, or a free learning mission.',
           GROUNDING_UNAVAILABLE: 'Padi could not confirm reliable sources for this answer. Try a narrower question or check the original organisation.',
           PRIVATE_DATA: 'Remove passwords, security codes, identity numbers or API keys before sending this question.',
           REQUEST_TOO_LARGE: 'This question and its notes are too long. Shorten them and try again.',
@@ -298,7 +306,7 @@
   function newTask() {
     requestNumber++; if (controller) controller.abort(); controller = null;
     state.messages = []; lastRequest = null; $('message').value = ''; $('notes').value = '';
-    $('error-box').hidden = true; $('resume-banner').hidden = true; $('request-status').textContent = service.ready ? '' : 'Padi is not currently available. Please try again later.';
+    $('error-box').hidden = true; $('resume-banner').hidden = true; $('request-status').textContent = canSend() ? '' : 'Padi is not currently available. Please try again later.';
     updateBusy(false); renderMessages(); save(); $('message').focus();
   }
   function showProgress() {
@@ -320,8 +328,10 @@
       const response = await fetch('/api/status', { credentials: 'same-origin', cache: 'no-store', signal: availabilityController.signal });
       if (!response.ok) throw new Error('unavailable');
       const status = await response.json();
-      service = { ready: status.ready === true, researchAvailable: status.researchAvailable === true };
-      $('request-status').textContent = service.ready ? '' : 'Padi is temporarily unavailable. You can still explore the learning library.';
+      service = { ready: status.ready === true, researchAvailable: status.researchAvailable === true, aiPaused: status.aiPaused === true, freeToolsAvailable: status.freeToolsAvailable === true };
+      $('service-notice').hidden = !service.aiPaused;
+      $('message').placeholder = service.aiPaused ? 'Try “time in Lagos” or “15% of 20000”.' : 'Ask anything. We’ll take it from here.';
+      $('request-status').textContent = canSend() ? '' : 'Padi is temporarily unavailable. You can still explore the learning library.';
     } catch { service.ready = false; $('request-status').textContent = 'Padi could not connect. Check your connection and reload to try again. Your learning library is still available.'; }
     finally { clearTimeout(availabilityTimer); }
     setMode(state.mode, false); updateBusy(false);
@@ -337,7 +347,7 @@
   document.querySelectorAll('.close-dialog').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
   $('dismiss-resume').addEventListener('click', () => { $('resume-banner').hidden = true; });
   $('show-progress').addEventListener('click', showProgress);
-  $('practice-start').addEventListener('click', () => { $('progress-dialog').close(); setMode('learn'); $('message').value = 'Help me practise a topic. Ask me what topic and level, then give me one question at a time.'; $('message').focus(); });
+  $('practice-start').addEventListener('click', () => { $('progress-dialog').close(); if (service.aiPaused) { window.location.href = 'index.html#learn'; return; } setMode('learn'); $('message').value = 'Help me practise a topic. Ask me what topic and level, then give me one question at a time.'; $('message').focus(); });
   $('profile-form').addEventListener('submit', event => {
     event.preventDefault();
     state.profile = cleanProfile(Object.fromEntries(PROFILE_FIELDS.map(field => [field, $(field).value])));

@@ -219,3 +219,5 @@ footer {
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important;transition:none!important; } }
 
 .home-footer .brand-logo { width:32px;height:32px;border-radius:9px;margin-right:2px; }
+.service-banner { padding:16px 20px;margin-top:18px;border:1px solid #cbd6c1;border-radius:12px;background:#edf1e5;color:#324f40;font-size:13px;line-height:1.7; }
+.service-banner a { font-weight:600;text-underline-offset:3px; }

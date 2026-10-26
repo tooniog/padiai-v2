@@ -1,5 +1,7 @@
 # PadiAI v17
 
+Current public release: paid AI replies and online research are paused. Keep `PADI_AI_ENABLED=false`. Free learning missions, quizzes and deterministic time/date/percentage tools remain available. Re-enabling later requires a new owner spending decision, a production-only provider key, durable usage/spend protection and a verified deployment. Do not revive older unbudgeted previews by restoring their shared key.
+
 Padi is a Nigerian daily-help and learning companion. The shared personal experience supports Ask, Learn, Work, Plan and Research. It remains learner/user-facing; Runnerbot Education OS owns institutional governance. This build does not claim an authenticated school integration.
 
 The existing static app, lessons, icons and install manifest have been preserved and upgraded. Node functions now handle AI requests; only an explicit allowlist of frontend files enters the public build.

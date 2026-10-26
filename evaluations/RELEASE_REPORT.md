@@ -1,6 +1,6 @@
 # PadiAI v17 implementation and verification
 
-26 October 2026. Implementation is available in a sign-in-protected Vercel Preview for a controlled owner/team pilot. Public AI activation still requires production configuration and durable usage protection. The working production deployment has not been replaced.
+26 October 2026. The public release keeps paid AI replies and web research paused at the owner's request. Free learning missions, quizzes, Lagos time/date, percentage calculations and privacy controls remain available. Paid AI is disabled in production, new preview builds and local configuration; there is no production provider key. Earlier hosted AI checks below describe the controlled preview before this pause.
 
 ## 1. Before and after
 
@@ -46,8 +46,8 @@ Production AI deliberately remains unavailable without explicit enablement and d
 
 ## 5. Test results and observed costs
 
-- **64 automated tests passed**, covering API validation, production fail-closed behaviour, protected-preview isolation, source guards and citation formatting, supplied-fact writing versus current-fact lookups, independent practice checks, cancellation/timeouts, incomplete provider-usage accounting, legacy lessons, packaging and offline cache behaviour.
-- **26 mock browser checks passed**, covering mobile/desktop layout, the actual logo loading across four pages, all key memory/export/delete controls, practice evidence/deduplication, next-turn feedback, stop/retry, unavailable storage, safe rendering, inline citations, errors and request limits. No page errors were observed.
+- **68 automated tests passed**, covering API validation, paid-pause enforcement across API and direct evaluation entry points, zero-provider-call free tools, production fail-closed behaviour, protected-preview isolation, source guards and citation formatting, supplied-fact writing versus current-fact lookups, independent practice checks, cancellation/timeouts, incomplete provider-usage accounting, legacy lessons, packaging and offline cache behaviour.
+- **29 mock browser checks passed**, covering mobile/desktop layout, the actual logo loading across four pages, paid-pause disclosures and free-tool access, all key memory/export/delete controls, practice evidence/deduplication, next-turn feedback, stop/retry, unavailable storage, safe rendering, inline citations, errors and request limits. No page errors were observed.
 - **20 initial live synthetic cases completed**. Their format/evidence checks passed, but subsequent answer review found a wrong practice key, weak transfer practice and research attribution/freshness errors. A format pass was explicitly not treated as an answer-quality pass.
 - **Nine affected regression cases completed** after practice/source improvements. A disputed question was correctly withheld; source review led to further research safeguards and model routing changes.
 - Final opening-hours research completed with the stronger model and guarded source handling. A financial research response was withheld by the authority guard; the essential-savings guarantee case now receives a deterministic, bounded response with no model call. The rejected response record is retained as evidence.
@@ -65,7 +65,9 @@ This is a pilot candidate, not evidence of nationwide readiness, educational gai
 
 There is no authenticated institutional tenant, approved school knowledge, human notification pathway, cloud account, cross-device history, live traffic engine, booking/payment/message execution, voice or document upload pipeline. Government decision use, financial suitability assessment and data-sovereignty claims are not established.
 
-The dedicated key is configured as a hidden Vercel Preview secret with explicit user consent; activation flags are restricted to the upgrade preview branch. Vercel Authentication was independently verified. Hosted status reports protected-preview access and instance-local usage backstops, with AI and research available. This is not durable public usage protection. Production AI configuration remains absent and must not bypass those controls. The local dedicated key is private and excluded from Git; it has not been printed or added to frontend assets. The unused temporary CLI sign-in folder was removed.
+Paid AI is paused using `PADI_AI_ENABLED=false` in production, new upgrade previews and local configuration. A private Preview key remains stored, with no production provider key. Earlier immutable AI-enabled previews cannot inherit an environment change: disabling the original provider key requires the owner's OpenAI sign-in, which has been requested. Until that is completed, do not claim an account-wide or all-deployments spending stop. The new public release itself makes no model or search requests while paused.
+
+Vercel Authentication was independently verified for previews. Durable public usage protection is still required before enabling production AI; a request count or a soft provider budget is not a strict dollar ceiling. Preparation created an unused project on the existing Neon Free organization, with an empty budget branch; no database secret was installed in Padi and no paid model call was made for this work. The local dedicated key is private and excluded from Git; it has not been printed or added to frontend assets. The unused temporary CLI sign-in folder was removed.
 
 ## 7. P2/P3 backlog
 

@@ -19,6 +19,7 @@ export function createChatHandler({ env = process.env, fetchImpl = fetch, now = 
       const clock = now();
       const local = localResponse(payload, clock);
       if (local) { res.statusCode = 200; res.end(JSON.stringify(local)); return; }
+      if (env.PADI_AI_ENABLED === 'false') throw new PadiError(503, 'AI_PAUSED', 'AI replies and online research are paused. Free lessons, Lagos time/date and percentage calculations are still available.');
       if (!configuration(env).ready) throw new PadiError(503, 'AI_NOT_CONFIGURED', 'Padi’s AI is not available yet. You can still use the learning missions and quizzes.');
       await checkRateLimit(req, env, fetchImpl, clock.getTime());
       release = acquireCapacity();

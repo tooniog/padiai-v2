@@ -16,7 +16,10 @@
     "data export produces a download",
     "delete clears assistant and legacy library local/session data",
     "corrupt saved memory recovers cleanly",
-    "unavailable service is clearly disclosed and sending disabled"
+    "unavailable service is clearly disclosed and sending disabled",
+    "paid pause is disclosed while free tools remain usable and paid modes are disabled",
+    "a free calculation completes while the paid-pause notice stays visible",
+    "unsupported paid tasks explain the pause without encouraging a paid retry"
   ],
   "screenshots": [
     "evaluations/ui/landing-desktop.png",
@@ -24,7 +27,8 @@
     "evaluations/ui/assistant-desktop.png",
     "evaluations/ui/assistant-mobile.png",
     "evaluations/ui/privacy-mobile.png",
-    "evaluations/ui/education-os-mobile.png"
+    "evaluations/ui/education-os-mobile.png",
+    "evaluations/ui/paid-paused-mobile.png"
   ],
   "pageErrors": []
 }

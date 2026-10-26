@@ -713,6 +713,11 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLanguageLabels();
   updateText();
   handleSubmittedState();
+  const serviceBanner = document.getElementById('service-banner');
+  if (serviceBanner) fetch('/api/status', { cache: 'no-store', credentials: 'same-origin' })
+    .then(response => response.ok ? response.json() : null)
+    .then(status => { serviceBanner.hidden = status?.aiPaused !== true; })
+    .catch(() => {});
 });
 
 if ("serviceWorker" in navigator) {

@@ -2,10 +2,12 @@
   "suite": "ui-flows",
   "mockOnly": true,
   "passed": [
-    "landing 1440px: no horizontal overflow",
-    "landing 375px: no horizontal overflow",
-    "assistant 1440px: no horizontal overflow",
-    "assistant 375px: no horizontal overflow",
+    "landing 1440px: original logo loaded, no horizontal overflow",
+    "landing 375px: original logo loaded, no horizontal overflow",
+    "assistant 1440px: original logo loaded, no horizontal overflow",
+    "assistant 375px: original logo loaded, no horizontal overflow",
+    "privacy.html: original logo loaded, no horizontal overflow at 375px",
+    "education-os.html: original logo loaded, no horizontal overflow at 375px",
     "mode and draft URL parameters do not auto-submit",
     "unsafe source protocol filtered",
     "actual practice attempt visible, sent to tutor and counted once",
@@ -20,7 +22,9 @@
     "evaluations/ui/landing-desktop.png",
     "evaluations/ui/landing-mobile.png",
     "evaluations/ui/assistant-desktop.png",
-    "evaluations/ui/assistant-mobile.png"
+    "evaluations/ui/assistant-mobile.png",
+    "evaluations/ui/privacy-mobile.png",
+    "evaluations/ui/education-os-mobile.png"
   ],
   "pageErrors": []
 }

@@ -65,21 +65,43 @@ try {
     await page.setViewportSize({ width, height });
     await page.goto(base + '/');
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `landing overflows at ${width}px`);
+    assert.equal(await page.locator('.home-nav .brand-logo').getAttribute('src'), '/icon-192.png');
+    assert.equal(await page.locator('.home-nav .brand-logo').evaluate(image => image.complete && image.naturalWidth > 0), true);
+    assert.equal(await page.locator('.orbit-core img').getAttribute('src'), '/icon-512.png');
+    assert.equal(await page.locator('.orbit-core img').evaluate(image => image.complete && image.naturalWidth > 0), true);
+    assert.equal(await page.locator('.home-footer .brand-logo').count(), 1);
+    assert.equal(await page.locator('.brand-symbol').count(), 0);
     const file = `landing-${label}.png`;
     await page.screenshot({ path: resolve(output, file), fullPage: true });
     screenshots.push(`evaluations/ui/${file}`);
-    record(`landing ${width}px: no horizontal overflow`);
+    record(`landing ${width}px: original logo loaded, no horizontal overflow`);
   }
   for (const [width, height, label] of [[1440, 1000, 'desktop'], [375, 812, 'mobile']]) {
     await page.setViewportSize({ width, height });
     await page.goto(base + '/tutor.html?mode=learn&q=Help%20with%20algebra');
     await page.waitForFunction(() => !document.querySelector('#send').disabled);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `assistant overflows at ${width}px`);
+    assert.equal(await page.locator('.sidebar .brand-logo').getAttribute('src'), '/icon-192.png');
+    assert.equal(await page.locator('.sidebar .brand-logo').evaluate(image => image.complete && image.naturalWidth > 0), true);
+    assert.equal(await page.locator('.brand-symbol').count(), 0);
     const file = `assistant-${label}.png`;
     await page.screenshot({ path: resolve(output, file), fullPage: true });
     screenshots.push(`evaluations/ui/${file}`);
-    record(`assistant ${width}px: no horizontal overflow`);
+    record(`assistant ${width}px: original logo loaded, no horizontal overflow`);
   }
+  for (const file of ['privacy.html', 'education-os.html']) {
+    await page.goto(`${base}/${file}`);
+    assert.equal(await page.locator('.brand-logo').getAttribute('src'), '/icon-192.png');
+    assert.equal(await page.locator('.brand-logo').evaluate(image => image.complete && image.naturalWidth > 0), true);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
+    assert.equal(await page.locator('.brand-symbol').count(), 0);
+    const screenshot = `${file.replace('.html', '')}-mobile.png`;
+    await page.screenshot({ path: resolve(output, screenshot), fullPage: true });
+    screenshots.push(`evaluations/ui/${screenshot}`);
+    record(`${file}: original logo loaded, no horizontal overflow at 375px`);
+  }
+  await page.goto(base + '/tutor.html?mode=learn&q=Help%20with%20algebra');
+  await page.waitForFunction(() => !document.querySelector('#send').disabled);
   assert.equal(await page.locator('#message').inputValue(), 'Help with algebra');
   assert.equal(await page.locator('[data-mode=learn]').getAttribute('aria-pressed'), 'true');
   assert.equal(requests.length, 0);

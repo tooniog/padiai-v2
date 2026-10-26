@@ -1,6 +1,6 @@
 # PadiAI v17 implementation and verification
 
-26 October 2026. Implementation is ready for a controlled pilot; public AI activation still requires hosting secrets and durable usage protection. The working production deployment has not been replaced.
+26 October 2026. Implementation is available in a sign-in-protected Vercel Preview for a controlled owner/team pilot. Public AI activation still requires production configuration and durable usage protection. The working production deployment has not been replaced.
 
 ## 1. Before and after
 
@@ -16,7 +16,7 @@
 | Reliability | Broad GET caching and HTML fallback for failed assets | Public-only caches, versioned offline navigation, typed failures, bounded requests, stop/retry and safe errors |
 | Distribution | Public static app | Personal experience with explicit Education OS governance boundary; no pretend school connection |
 
-The original lessons, install icons, learning routes and manifest remain available. GitHub and the exact live v16 source were archived separately before changes.
+The original lessons, install icons, learning routes and manifest remain available. The preserved PadiAI logo is used on the home page, assistant and information pages. GitHub and the exact live v16 source were archived separately before changes.
 
 ## 2. Features improved
 
@@ -46,12 +46,13 @@ Production AI deliberately remains unavailable without explicit enablement and d
 
 ## 5. Test results and observed costs
 
-- **58 automated tests passed**, covering API validation, production fail-closed behaviour, protected-preview isolation, source guards, independent practice checks, cancellation/timeouts, incomplete provider-usage accounting, legacy lessons, packaging and offline cache behaviour.
-- **24 mock browser checks passed**, covering mobile/desktop layout, all key memory/export/delete controls, practice evidence/deduplication, next-turn feedback, stop/retry, unavailable storage, safe rendering, inline citations, errors and request limits. No page errors were observed.
+- **64 automated tests passed**, covering API validation, production fail-closed behaviour, protected-preview isolation, source guards and citation formatting, supplied-fact writing versus current-fact lookups, independent practice checks, cancellation/timeouts, incomplete provider-usage accounting, legacy lessons, packaging and offline cache behaviour.
+- **26 mock browser checks passed**, covering mobile/desktop layout, the actual logo loading across four pages, all key memory/export/delete controls, practice evidence/deduplication, next-turn feedback, stop/retry, unavailable storage, safe rendering, inline citations, errors and request limits. No page errors were observed.
 - **20 initial live synthetic cases completed**. Their format/evidence checks passed, but subsequent answer review found a wrong practice key, weak transfer practice and research attribution/freshness errors. A format pass was explicitly not treated as an answer-quality pass.
 - **Nine affected regression cases completed** after practice/source improvements. A disputed question was correctly withheld; source review led to further research safeguards and model routing changes.
 - Final opening-hours research completed with the stronger model and guarded source handling. A financial research response was withheld by the authority guard; the essential-savings guarantee case now receives a deterministic, bounded response with no model call. The rejected response record is retained as evidence.
 - Real local browser-to-API-to-model tutoring was observed: the explanation solved `2x + 3 = 11` correctly and an unconfirmed question was withheld without increasing progress. A subsequent shapes session completed the whole loop: a wrong pentagon answer received a correction, the follow-up explanation used that actual attempt, and a new quadrilateral question was answered correctly. Progress showed two attempts and one correct answer, with a topic marked for review and no mastery claim. This is one synthetic functional scenario, not evidence of learner gains. Browser practice recording/adaptation is also covered by the mock suite.
+- After Preview activation, a real hosted fraction explanation and independently checked transfer question completed, with the correct attempt recorded once. Initial hosted work/research checks exposed an unnecessary search for a supplied delivery date and an uncited factual research introduction. The original research diagnostic is retained privately outside the repository. Routing, citation instructions and two independently reproduced citation-formatting false positives were corrected with regression coverage; wrong-authority citations still fail closed.
 
 The recorded evaluation batches show approximately **$0.173 in estimated text-token costs**, excluding search-tool fees, hosting, standalone smoke requests and one rejected research call whose usage was not captured by the earlier harness. This is not the session's total bill or a per-user cost forecast. The harness now retains safe usage metadata for source-guard rejections. Missing provider usage remains unknown; a full cost estimate is withheld when usage or model pricing is incomplete, with measured subtotals reported separately. Observed initial-batch median latency was about **1.65 seconds**, maximum **9.03 seconds**; the practice-check regression median was about **2.63 seconds**. These are small synthetic samples, not production service-level measurements.
 
@@ -63,7 +64,7 @@ This is a pilot candidate, not evidence of nationwide readiness, educational gai
 
 There is no authenticated institutional tenant, approved school knowledge, human notification pathway, cloud account, cross-device history, live traffic engine, booking/payment/message execution, voice or document upload pipeline. Government decision use, financial suitability assessment and data-sovereignty claims are not established.
 
-Hosting secrets and durable usage protection are not yet configured. Public AI activation must not bypass those controls. The local dedicated key is present, private and excluded from Git; it has not been printed or added to frontend assets.
+The dedicated key is configured as a hidden Vercel Preview secret with explicit user consent; activation flags are restricted to the upgrade preview branch. Vercel Authentication was independently verified. Hosted status reports protected-preview access and instance-local usage backstops, with AI and research available. This is not durable public usage protection. Production AI configuration remains absent and must not bypass those controls. The local dedicated key is private and excluded from Git; it has not been printed or added to frontend assets. The unused temporary CLI sign-in folder was removed.
 
 ## 7. P2/P3 backlog
 

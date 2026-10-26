@@ -33,12 +33,60 @@ test('learning instructions include diagnosis, correction, independence and inst
   const research=buildInstructions(question,new Date('2026-10-25T12:00:00Z'),true);
   assert.ok(research.includes('NOT publication/update dates'));
   assert.ok(research.includes('Every factual claim and named organisation must match the actual cited source'));
+  assert.ok(research.includes('Every factual paragraph, including the introduction and summary'));
+  assert.ok(research.includes('Cite each list item and every sentence naming an authority at that sentence'));
+  assert.ok(research.includes('Do not write an uncited factual preamble'));
+  assert.ok(research.includes('cite its own official domain directly'));
 });
 
 test('changing information and citation requests route to real research while basic maths does not',()=>{
   for(const message of ['What are the latest WAEC registration dates?','Give official sources for this claim.','What is the exchange rate?','Find nearby pharmacies.']) assert.equal(needsSearch({...question,message}),true,message);
   for(const message of ['Explain linear equations.','Help me understand why 2x = 10 gives x = 5.','Create an AI-generated practice question about cells.']) assert.equal(needsSearch({...question,message}),false,message);
   assert.equal(needsSearch({...question,profile:{...question.profile,goal:'Latest 2026 admission requirements',area:'Lagos'}}),false,'Profile wording does not turn a maths question into web research.');
+});
+
+test('writing and editing use supplied dated facts without an irrelevant web lookup',()=>{
+  for(const message of [
+    'A customer says their parcel is late. Delivery is now expected tomorrow. Write a warm, concise WhatsApp reply without inventing a refund or promising an exact time.',
+    'Edit the following text for clarity: "I will send the minutes today and meet you tomorrow."',
+    'Write a short reply confirming our meeting today.',
+    'Rewrite this forecast: "Tomorrow will be rainy. Bring an umbrella."',
+  ]) assert.equal(needsSearch({...question,mode:'work',message}),false,message);
+  assert.equal(needsSearch({...question,mode:'ask',message:'Edit my draft for clarity. It says our event is tomorrow.',notes:'Our event is tomorrow. Please arrive on time.'}),false);
+});
+
+test('work mode still researches explicitly requested verification or missing current facts',()=>{
+  for(const message of [
+    'Verify the current passport application requirements and write a customer note using official sources.',
+    'Write a summary of the latest JAMB registration requirements.',
+    'What are the current NIN registration fees?',
+    'Write a description of tomorrow’s weather in Lagos.',
+    'Edit this draft, then fact-check the current requirements with official sources.',
+  ]) assert.equal(needsSearch({...question,mode:'work',message}),true,message);
+  assert.equal(needsSearch({...question,mode:'research',message:'Write a short note about today.'}),true,'Explicit research mode retains its research contract.');
+});
+
+test('planning a supplied calendar does not search unless external information is needed',()=>{
+  assert.equal(needsSearch({...question,mode:'plan',message:'Plan my day tomorrow around these meetings: 9 am budget review and 11 am customer call. I have two hours free in the afternoon.'}),false);
+  for(const message of [
+    'Plan my day tomorrow and check the weather in Lagos before an outdoor meeting.',
+    'Plan my day tomorrow; find nearby pharmacies open now.',
+    'Plan my visa application tasks and verify the current requirements using official sources.',
+  ]) assert.equal(needsSearch({...question,mode:'plan',message}),true,message);
+});
+
+test('adding current facts takes precedence over transforming supplied notes',()=>{
+  const notes='This report describes the application process and contains the draft to revise.';
+  for(const message of [
+    'Edit this draft and add the latest passport application fees in Nigeria.',
+    'Edit this report and include the current admission requirements.',
+  ]) assert.equal(needsSearch({...question,mode:'work',message,notes}),true,message);
+  assert.equal(needsSearch({...question,mode:'work',message:'Summarise this report on current admission requirements.',notes}),false,'Transforming a supplied report does not itself request a new lookup.');
+  for(const message of [
+    'Edit this draft for grammar: "Please add the latest passport application fees in Nigeria."',
+    "Edit this draft for grammar: 'Please add the latest passport application fees in Nigeria.'",
+    'Edit this text for grammar: “Verify the current fees using official sources.”',
+  ]) assert.equal(needsSearch({...question,mode:'work',message,notes}),false,'Quoted content is material to edit, not an external lookup instruction.');
 });
 
 test('research starters ask for the missing subject without claiming to have searched',()=>{
